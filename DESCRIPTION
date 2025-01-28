@@ -1,11 +1,27 @@
 Package: IEAnalyzeR
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Standardized Functions for the Gulf-IEA Ecosystem Status Reports 
 Version: 0.1.0
-Author: Who wrote it
+Authors@R: 
+  c(person(given = "Carissa",
+           family = "Gervasi",
+           role = c("aut", "cre"),
+           email = "carissa.gervasi@noaa.gov",
+           comment = c(ORCID = "0000-0001-8049-7069")),
+    person(given = "Brittany",
+           family = "Troast",
+           email = "brittany.troast@noaa.gov",
+           role = c("aut", "cre"),
+    person(given = "Brendan",
+           family = "Turley",
+           email = "brendan.turley@noaa.gov",
+           role = c("aut", "cre")
+    person(given = "Willem",
+           family = "Klajbor",
+           email = "willem.klajbor@noaa.gov",
+           role = c("aut", "cre"))
 Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: This package contains standardized functions used to create and plot indicator data for NOAA IEA Ecosystem Status Reports. It was specifically created for the Gulf of Mexico IEA. 
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
