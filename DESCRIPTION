@@ -11,17 +11,18 @@ Authors@R:
     person(given = "Brittany",
            family = "Troast",
            email = "brittany.troast@noaa.gov",
-           role = c("aut", "cre"),
+           role = c("aut")),
     person(given = "Brendan",
            family = "Turley",
            email = "brendan.turley@noaa.gov",
-           role = c("aut", "cre")
+           role = c("aut")),
     person(given = "Willem",
            family = "Klajbor",
            email = "willem.klajbor@noaa.gov",
-           role = c("aut", "cre"))
+           role = c("aut")))
 Maintainer: The package maintainer <yourself@somewhere.net>
 Description: This package contains standardized functions used to create and plot indicator data for NOAA IEA Ecosystem Status Reports. It was specifically created for the Gulf of Mexico IEA. 
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 7.3.2
