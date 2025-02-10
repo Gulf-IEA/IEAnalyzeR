@@ -2,4 +2,5 @@
 
 export(data_prep)
 export(hello)
+export(hello2)
 export(plot_fn_obj)
