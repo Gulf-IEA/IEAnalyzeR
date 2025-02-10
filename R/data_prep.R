@@ -10,6 +10,8 @@
 #' @export
 #'
 #' @examples
+#' data_prep()
+
 data_prep <-function (df, trends=T) {
 
   df_list<-vector("list", 5)

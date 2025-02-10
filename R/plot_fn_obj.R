@@ -10,6 +10,8 @@
 #' @export
 #'
 #' @examples
+#' plot_fn_obj()
+
 plot_fn_obj<-function(df_obj, interactive=FALSE) {
 
 
