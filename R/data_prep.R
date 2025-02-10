@@ -8,9 +8,6 @@
 #'
 #' @return An object with 5 datasets used in "plot_fn_obj".
 #' @export
-#'
-#' @examples
-#' data_prep()
 
 data_prep <-function (df, trends=T) {
 
