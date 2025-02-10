@@ -2,6 +2,8 @@
 #' @description
 #' This function plots an indicator time series figure from data that is formated from the "data_prep" function in IEAnalyzeR.
 #'
+#' @import ggplot
+#' @import plotly
 #'
 #' @param df_obj Data object produced by the "data_prep" function.
 #' @param interactive Run plot through plotly to create an interactive version of the plot.
@@ -66,3 +68,6 @@ plot_fn_obj<-function(df_obj, interactive=FALSE) {
     plot_sec
   }
 }
+
+
+
