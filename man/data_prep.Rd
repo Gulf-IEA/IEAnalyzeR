@@ -4,12 +4,14 @@
 \alias{data_prep}
 \title{Title}
 \usage{
-data_prep(df, trends = T)
+data_prep(df, trends = T, subind = "extent")
 }
 \arguments{
 \item{df}{Dataset with top 3 rows inlcuding metadata of indicator name, unit, and subcategory.}
 
 \item{trends}{T/F if you would like the function to calculate trends on this dataset.}
+
+\item{subind}{How is the data categorized for sun indicators. Options "extent" or "unit".}
 }
 \value{
 An object with 5 datasets used in "plot_fn_obj".

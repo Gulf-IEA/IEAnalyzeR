@@ -6,11 +6,12 @@
 #'
 #' @param df Dataset with top 3 rows inlcuding metadata of indicator name, unit, and subcategory.
 #' @param trends T/F if you would like the function to calculate trends on this dataset.
+#' @param subind How is the data categorized for sun indicators. Options "extent" or "unit".
 #'
 #' @return An object with 5 datasets used in "plot_fn_obj".
 #' @export
 
-data_prep <-function (df, trends=T) {
+data_prep <-function (df, trends=T, subind= "extent") {
 
   df_list<-vector("list", 5)
   names(df_list)<-c("data", "pos", "neg", "labs", "vals")
@@ -36,7 +37,7 @@ data_prep <-function (df, trends=T) {
       for (i in 2:ncol(df_dat)){
         sub_df<-df_dat[,c(1,i)]
         df_lab<-df[1:3,] #For example sake cutting to only col I need
-        ind<-df_lab[3,]
+        ind<-ifelse(subind=="extent", df_lab[3,i], ifelse(subind=="unit", df_lab[2,i], df_lab[1,i]))
         colnames(sub_df)<-c("year","value")
         # sub_df$value<- as.numeric(sub_df$value)
         sub_df<-as.data.frame(lapply(sub_df, as.numeric))
@@ -49,7 +50,7 @@ data_prep <-function (df, trends=T) {
         sub_df$min <- ifelse(sub_df$value >= mean, mean, sub_df$value)
         sub_df$max <- ifelse(sub_df$value >= mean, sub_df$value, mean)
         sub_df$year <- as.numeric(sub_df$year)
-        sub_df$subnm<-ind[,i]
+        sub_df$subnm<-paste0(ind)
         sub_list[[i]]<-sub_df
 
       }
