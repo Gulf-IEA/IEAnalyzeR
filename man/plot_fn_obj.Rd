@@ -4,12 +4,27 @@
 \alias{plot_fn_obj}
 \title{Title}
 \usage{
-plot_fn_obj(df_obj, interactive = FALSE)
+plot_fn_obj(
+  df_obj,
+  interactive = FALSE,
+  sep_yaxis = F,
+  manual_ylab = NULL,
+  manual_xlab = NULL,
+  manual_title = NULL
+)
 }
 \arguments{
 \item{df_obj}{Data object produced by the "data_prep" function.}
 
 \item{interactive}{Run plot through plotly to create an interactive version of the plot.}
+
+\item{sep_yaxis}{Logical. Does this plot have subindicators that need a separate y axis?}
+
+\item{manual_ylab}{Manual y axis title. List multiple ylabs in order of appearance for figure with subindicators.}
+
+\item{manual_xlab}{Manual x axis title.}
+
+\item{manual_title}{Manual overall plot/plots title.}
 }
 \value{
 A plot in the indicatorTimeSeries format.
