@@ -11,8 +11,7 @@
 #' @return An object with 5 datasets used in "plot_fn_obj".
 #' @export
 
-data_prep <-function (df, trends=T, subind= "extent") {
-
+data_prep <-function (df, trends = T, subind = "extent"){
   df_list<-vector("list", 5)
   names(df_list)<-c("data", "pos", "neg", "labs", "vals")
 
@@ -31,6 +30,7 @@ data_prep <-function (df, trends=T, subind= "extent") {
     df_dat$min <- ifelse(df_dat$value >= mean, mean, df_dat$value)
     df_dat$max <- ifelse(df_dat$value >= mean, df_dat$value, mean)
     df_dat$year <- as.numeric(df_dat$year)
+    df_dat<-df_dat[!is.na(df_dat$value),]
     df_dat} else {
 
       sub_list<-list()
@@ -38,6 +38,8 @@ data_prep <-function (df, trends=T, subind= "extent") {
         sub_df<-df_dat[,c(1,i)]
         df_lab<-df[1:3,] #For example sake cutting to only col I need
         ind<-ifelse(subind=="extent", df_lab[3,i], ifelse(subind=="unit", df_lab[2,i], df_lab[1,i]))
+
+
         colnames(sub_df)<-c("year","value")
         # sub_df$value<- as.numeric(sub_df$value)
         sub_df<-as.data.frame(lapply(sub_df, as.numeric))
@@ -51,6 +53,7 @@ data_prep <-function (df, trends=T, subind= "extent") {
         sub_df$max <- ifelse(sub_df$value >= mean, sub_df$value, mean)
         sub_df$year <- as.numeric(sub_df$year)
         sub_df$subnm<-paste0(ind)
+        sub_df<-sub_df[!is.na(sub_df$value),]
         sub_list[[i]]<-sub_df
 
       }
@@ -66,6 +69,7 @@ data_prep <-function (df, trends=T, subind= "extent") {
     sd<-sd(as.numeric(df_dat$value), na.rm = T)
     pos<-df_dat
     pos$value<-ifelse(pos$valence == "pos",pos$value, mean)
+    pos<-pos[!is.na(pos$value),]
     pos} else {
       sub_list<-list()
       subs<-unique(df_dat$subnm)
@@ -78,6 +82,7 @@ data_prep <-function (df, trends=T, subind= "extent") {
         pos$subnm<-subs[i]
         pos$mean<-mean
         pos$sd<-sd
+        pos<-pos[!is.na(pos$value),]
         sub_list[[i]]<-pos
       }
       pos<-do.call("rbind",sub_list)
@@ -91,6 +96,7 @@ data_prep <-function (df, trends=T, subind= "extent") {
     sd<-sd(as.numeric(df_dat$value), na.rm = T)
     neg<-df_dat
     neg$value<-ifelse(neg$valence == "neg",neg$value, mean)
+    neg<-neg[!is.na(neg$value),]
     neg} else {
       sub_list<-list()
       subs<-unique(df_dat$subnm)
@@ -103,6 +109,7 @@ data_prep <-function (df, trends=T, subind= "extent") {
         neg$subnm<-subs[i]
         neg$mean<-mean
         neg$sd<-sd
+        neg<-neg[!is.na(neg$value),]
         sub_list[[i]]<-neg
       }
       neg<-do.call("rbind",sub_list)
