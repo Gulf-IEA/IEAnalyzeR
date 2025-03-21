@@ -69,6 +69,8 @@ data_prep <-function (df, trends = T, subind = "extent"){
     sd<-sd(as.numeric(df_dat$value), na.rm = T)
     pos<-df_dat
     pos$value<-ifelse(pos$valence == "pos",pos$value, mean)
+    pos$mean<-mean
+    pos$sd<-sd
     pos<-pos[!is.na(pos$value),]
     pos} else {
       sub_list<-list()
@@ -96,6 +98,8 @@ data_prep <-function (df, trends = T, subind = "extent"){
     sd<-sd(as.numeric(df_dat$value), na.rm = T)
     neg<-df_dat
     neg$value<-ifelse(neg$valence == "neg",neg$value, mean)
+    neg$mean<-mean
+    neg$sd<-sd
     neg<-neg[!is.na(neg$value),]
     neg} else {
       sub_list<-list()
