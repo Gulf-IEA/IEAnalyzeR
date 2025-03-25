@@ -59,7 +59,7 @@ plot_fn_obj<-function (df_obj, interactive = FALSE, sep_yaxis=F, manual_ylab=NUL
       }
     } else {
       plot<-plot+
-        facet_wrap(~subnm, ncol = ifelse(length(unique(df_obj$data$subnm)) < 4, 1, 2), scales = "free_y")
+        facet_wrap(~id, ncol = ifelse(length(unique(df_obj$data$id)) < 4, 1, 2), scales = "free_y",labeller = as_labeller(setNames(df_obj$vals$subnm,df_obj$vals$id)))
     }
 
   }
