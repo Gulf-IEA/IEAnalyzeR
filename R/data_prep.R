@@ -11,7 +11,7 @@
 #' @return An object with 5 datasets used in "plot_fn_obj".
 #' @export
 
-data_prep <-function (df, trends = T, subind = "extent"){
+data_prep <-function (df, trends = T, subind = FALSE){
   df_list<-vector("list", 5)
   names(df_list)<-c("data", "pos", "neg", "labs", "vals")
 
@@ -36,12 +36,11 @@ data_prep <-function (df, trends = T, subind = "extent"){
       sub_list<-list()
       for (i in 2:ncol(df_dat)){
         sub_df<-df_dat[,c(1,i)]
-        df_lab<-df[1:3,] #For example sake cutting to only col I need
+        df_lab<-df[1:3,]
         ind<-ifelse(subind=="extent", df_lab[3,i], ifelse(subind=="unit", df_lab[2,i], df_lab[1,i]))
 
 
         colnames(sub_df)<-c("year","value")
-        # sub_df$value<- as.numeric(sub_df$value)
         sub_df<-as.data.frame(lapply(sub_df, as.numeric))
 
         mean<-mean(as.numeric(sub_df$value), na.rm = T)
@@ -53,6 +52,7 @@ data_prep <-function (df, trends = T, subind = "extent"){
         sub_df$max <- ifelse(sub_df$value >= mean, sub_df$value, mean)
         sub_df$year <- as.numeric(sub_df$year)
         sub_df$subnm<-paste0(ind)
+        sub_df$id<-i-1
         sub_df<-sub_df[!is.na(sub_df$value),]
         sub_list[[i]]<-sub_df
 
@@ -74,14 +74,15 @@ data_prep <-function (df, trends = T, subind = "extent"){
     pos<-pos[!is.na(pos$value),]
     pos} else {
       sub_list<-list()
-      subs<-unique(df_dat$subnm)
+      subs<-unique(df_dat$id)
+      subnm_un<-unique(select(df_dat, subnm, id))
       for (i in 1:length(subs)){
-        sub_df<-df_dat[df_dat$subnm==subs[i],]
+        sub_df<-df_dat[df_dat$id==subs[i],]
         mean<-mean(as.numeric(sub_df$value), na.rm = T)
         sd<-sd(as.numeric(sub_df$value), na.rm = T)
         pos<-sub_df
         pos$value<-ifelse(pos$valence == "pos",pos$value, mean)
-        pos$subnm<-subs[i]
+        pos$subnm<-subnm_un[i,1]
         pos$mean<-mean
         pos$sd<-sd
         pos<-pos[!is.na(pos$value),]
@@ -103,14 +104,15 @@ data_prep <-function (df, trends = T, subind = "extent"){
     neg<-neg[!is.na(neg$value),]
     neg} else {
       sub_list<-list()
-      subs<-unique(df_dat$subnm)
+      subs<-unique(df_dat$id)
+      subnm_un<-unique(select(df_dat, subnm, id))
       for (i in 1:length(subs)){
-        sub_df<-df_dat[df_dat$subnm==subs[i],]
+        sub_df<-df_dat[df_dat$id==subs[i],]
         mean<-mean(as.numeric(sub_df$value), na.rm = T)
         sd<-sd(as.numeric(sub_df$value), na.rm = T)
         neg<-sub_df
         neg$value<-ifelse(neg$valence == "neg",neg$value, mean)
-        neg$subnm<-subs[i]
+        neg$subnm<-subnm_un[i,1]
         neg$mean<-mean
         neg$sd<-sd
         neg<-neg[!is.na(neg$value),]
@@ -154,9 +156,11 @@ data_prep <-function (df, trends = T, subind = "extent"){
                        slope_word=slope_word)
       vals} else {
         sub_list<-list()
-        subs<-unique(df_dat$subnm)
+        subnm_un<-unique(select(df_dat, subnm, id))
+        subs<-unique(df_dat$id)
+        print(subs)
         for (i in 1:length(subs)){
-          sub_df<-df_dat[df_dat$subnm==subs[i],]
+          sub_df<-df_dat[df_dat$id==subs[i],]
           minyear<-min(na.omit(sub_df)$year)
           maxyear<-max(na.omit(sub_df)$year)
           allminyear<-min(df_dat$year)
@@ -191,7 +195,8 @@ data_prep <-function (df, trends = T, subind = "extent"){
                            slope_sym=slope_sym,
                            mean_word=mean_word,
                            slope_word=slope_word,
-                           subnm=subs[i])
+                           subnm=subnm_un[i,1],
+                           id=unique(sub_df$id))
 
 
           sub_list[[i]]<-vals
