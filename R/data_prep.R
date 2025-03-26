@@ -1,12 +1,12 @@
 #' Title
 #' @description
-#' This function reformats data from the "plotIndicatorTimeSeries" format, into a data object that works with plotting functions in the IEAnalyzeR function.
+#' This function re-formats data from the "plotIndicatorTimeSeries" csv file format, into a data object that works with plotting functions in the IEAnalyzeR function.
 #'
 #' @import dplyr
 #'
 #' @param df Dataset with top 3 rows inlcuding metadata of indicator name, unit, and subcategory.
 #' @param trends T/F if you would like the function to calculate trends on this dataset.
-#' @param subind How is the data categorized for sun indicators. Options "extent" or "unit".
+#' @param subind How is the data categorized for sub indicators. Options "extent" or "unit".
 #'
 #' @return An object with 5 datasets used in "plot_fn_obj".
 #' @export
@@ -18,6 +18,51 @@ data_prep <-function (df, trends = T, subind = FALSE){
   #Data used for everything
   df_dat<-df[4:nrow(df),c(1:ncol(df))]
 
+  # convert dates to standardized format --------------------
+  if (class(df_dat[[1]]) == "integer" & all(nchar(df_dat[[1]]) <= 4)) {  # is time column values of years?
+    monthly <- FALSE                                # if so, monthly F and set time to year
+    df_dat[1] <- df_dat[[1]]
+  }  else  {                                        # else need to find and extract month format
+    monthly <- TRUE
+    # Ensure the first column is character
+    df_dat[[1]] <- as.character(df_dat[[1]])
+
+    # Detect format and standardize
+    if (all(grepl("^\\d{6}$", df_dat[[1]]))) {
+      # Format: YYYYMM (Add '01' for day)
+      df_dat[[1]] <- paste0(df_dat[[1]], "01")
+      datelis <- as.Date(df_dat[[1]], format = "%Y%m%d")
+
+    } else if (all(grepl("^\\d{8}$", df_dat[[1]]))) {
+      # Format: YYYYMMDD (Use as is)
+      datelis <- as.Date(df_dat[[1]], format = "%Y%m%d")
+
+    } else if (all(grepl("^\\d{4}-\\d{2}$", df_dat[[1]]))) {
+      # Format: YYYY-MM (Add '-01' for day)
+      df_dat[[1]] <- paste0(df_dat[[1]], "-01")
+      datelis <- as.Date(df_dat[[1]], format = "%Y-%m-%d")
+
+    } else if (all(grepl("^\\d{4}-\\d{2}-\\d{2}$", df_dat[[1]]))) {
+      # Format: YYYY-MM-DD (Use as is)
+      datelis <- as.Date(df_dat[[1]], format = "%Y-%m-%d")
+
+    } else if (all(grepl("^[A-Za-z]{3}\\d{4}$", df_dat[[1]]))) {
+      # Format: JanYYYY (Add '01' for day)
+      datelis <- as.Date(paste0(df_dat[[1]], "01"), format = "%b%Y%d")
+
+    } else {
+      datelis <- NA  # Unknown format
+    }
+  }
+
+  ptsizadj <- 1
+  if (monthly==TRUE) {                                  # if monthly, convert to decimal date
+    df_dat[1] <- as.numeric(substr(datelis, 1, 4)) + ((as.numeric(strftime(datelis, format = "%j")) - 1) / 365)
+    ptsizadj <- 3
+  }
+
+
+  # Create data frames -------------------------------------------
   if (ncol(df_dat)<2.5) {
     colnames(df_dat)<-c("year","value")
     df_dat$value<- as.numeric(df_dat$value)
@@ -112,7 +157,7 @@ data_prep <-function (df, trends = T, subind = FALSE){
         sd<-sd(as.numeric(sub_df$value), na.rm = T)
         neg<-sub_df
         neg$value<-ifelse(neg$valence == "neg",neg$value, mean)
-        neg$subnm<-subnm_un[i,1]
+        neg$subnm<-subnm_un[i,1] #changed this *****************************
         neg$mean<-mean
         neg$sd<-sd
         neg<-neg[!is.na(neg$value),]
@@ -158,7 +203,6 @@ data_prep <-function (df, trends = T, subind = FALSE){
         sub_list<-list()
         subnm_un<-unique(select(df_dat, subnm, id))
         subs<-unique(df_dat$id)
-        print(subs)
         for (i in 1:length(subs)){
           sub_df<-df_dat[df_dat$id==subs[i],]
           minyear<-min(na.omit(sub_df)$year)
