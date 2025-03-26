@@ -42,6 +42,11 @@ data_prep <-function (df, trends = T, subind = FALSE){
       df_dat[[1]] <- paste0(df_dat[[1]], "-01")
       datelis <- as.Date(df_dat[[1]], format = "%Y-%m-%d")
 
+    } else if (all(grepl("^\\d{2}-\\d{4}$", df_dat[[1]]))) {
+      # Format: MM-YYYY (Reorder to YYYY-MM and add '-01' for day)
+      df_dat[[1]] <- sub("^(\\d{2})-(\\d{4})$", "\\2-\\1-01", df_dat[[1]])
+      datelis <- as.Date(df_dat[[1]], format = "%Y-%m-%d")
+
     } else if (all(grepl("^\\d{4}-\\d{2}-\\d{2}$", df_dat[[1]]))) {
       # Format: YYYY-MM-DD (Use as is)
       datelis <- as.Date(df_dat[[1]], format = "%Y-%m-%d")
@@ -49,6 +54,10 @@ data_prep <-function (df, trends = T, subind = FALSE){
     } else if (all(grepl("^[A-Za-z]{3}\\d{4}$", df_dat[[1]]))) {
       # Format: JanYYYY (Add '01' for day)
       datelis <- as.Date(paste0(df_dat[[1]], "01"), format = "%b%Y%d")
+
+    } else if (all(grepl("^\\d{4}[A-Za-z]{3}$", df_dat[[1]]))) {
+      # Format: YYYYJan (Add '01' for day)
+      datelis <- as.Date(paste0(df_dat[[1]], "01"), format = "%Y%b%d")
 
     } else {
       datelis <- NA  # Unknown format
