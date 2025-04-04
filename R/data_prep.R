@@ -166,7 +166,7 @@ data_prep <-function (df, trends = T, subind = FALSE){
         sd<-sd(as.numeric(sub_df$value), na.rm = T)
         neg<-sub_df
         neg$value<-ifelse(neg$valence == "neg",neg$value, mean)
-        neg$subnm<-subnm_un[i,1] #changed this *****************************
+        neg$subnm<-subnm_un[i,1]
         neg$mean<-mean
         neg$sd<-sd
         neg<-neg[!is.na(neg$value),]
@@ -183,6 +183,8 @@ data_prep <-function (df, trends = T, subind = FALSE){
     if(ncol(df_dat)<6){
       mean<-mean(as.numeric(df_dat$value), na.rm = T)
       sd<-sd(as.numeric(df_dat$value), na.rm = T)
+      minyear<-min(na.omit(df_dat)$year)
+      maxyear<-max(na.omit(df_dat)$year)
 
       #Trend Analysis
       last5<-df_dat[df_dat$year > max(df_dat$year)-5,]
@@ -202,6 +204,8 @@ data_prep <-function (df, trends = T, subind = FALSE){
       #Dataframe
       vals<-data.frame(mean=mean,
                        sd=sd,
+                       minyear=minyear,
+                       maxyear=maxyear,
                        mean_tr=mean_tr,
                        slope_tr=slope_tr,
                        mean_sym=mean_sym,
