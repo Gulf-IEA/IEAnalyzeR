@@ -7,7 +7,7 @@
 trends()
 }
 \value{
-A list of trend options
+A list of trend options; more to come
 }
 \description{
 List trend options
