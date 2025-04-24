@@ -15,23 +15,27 @@
 #' @return A plot in the indicatorTimeSeries format.
 #' @export
 
-plot_fn_obj<-function (df_obj, interactive = FALSE, sep_yaxis=F, manual_ylab=NULL, manual_xlab=NULL, manual_title=NULL) {
-
+plot_fn_obj <- function (df_obj,
+                         interactive = FALSE,
+                         sep_yaxis = FALSE,
+                         manual_ylab = NULL,
+                         manual_xlab = NULL,
+                         manual_title = NULL)
+{
   #Main Plot
   plot <- ggplot(data = df_obj$data, aes(x = year, y = value)) +
     geom_ribbon(data = df_obj$ribbon, aes(ymax = max, ymin = mean), fill = "#7FFF7F") +
     geom_ribbon(data = df_obj$ribbon, aes(ymax = mean, ymin = min), fill = "#FF7F7F") +
-    # geom_ribbon(data = df_obj$pos, aes(ymax = max, ymin = mean), fill = "#7FFF7F") +
-    # geom_ribbon(data = df_obj$neg, aes(ymax = mean, ymin = min), fill = "#FF7F7F") +
-    # geom_rect(data = merge(df_obj$data, df_obj$vals), aes(xmin = min(year), xmax = max(year), ymin = mean - sd, ymax = mean + sd), fill = "white") +
+    geom_rect(data = merge(df_obj$data, df_obj$vals), aes(xmin = min(year), xmax = max(year), ymin = mean - sd, ymax = mean + sd), fill = "white") +
     geom_hline(aes(yintercept = mean), lty = "dashed", data = df_obj$vals) +
     geom_hline(aes(yintercept = mean + sd), data = df_obj$vals) +
     geom_hline(aes(yintercept = mean -sd), data = df_obj$vals) +
     geom_line(aes(group = 1), lwd = 0.75) +
     xlab("Year") + ylab(df_obj$labs[2,2]) + ggtitle (df_obj$labs[1, 2])+
-    theme_bw() + theme(strip.background = element_blank(),
-                       strip.text = element_text(face = "bold"),
-                       title = element_text(size = 14, face = "bold"))
+    theme_bw() + theme(#panel.grid.minor = element_blank(),
+      strip.background = element_blank(),
+      strip.text = element_text(face = "bold"),
+      title = element_text(size = 14, face = "bold"))
 
   #Altering scales
   if (max(df_obj$data$year) - min(df_obj$data$year) > 20) {
@@ -44,7 +48,7 @@ plot_fn_obj<-function (df_obj, interactive = FALSE, sep_yaxis=F, manual_ylab=NUL
 
 
   #Add facetting for sub indicators
-  if (ncol(df_obj$data) > 5.5) {
+  if (ncol(df_obj$data) > 2) {
 
     if (sep_yaxis==T) {
       plot<-plot+
