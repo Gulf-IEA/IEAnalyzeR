@@ -2,3 +2,8 @@
 
 export(data_prep)
 export(plot_fn_obj)
+import(dplyr)
+import(ggimage)
+import(ggplot2)
+import(lubridate)
+import(plotly)

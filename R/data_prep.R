@@ -2,6 +2,8 @@
 #' @description
 #' This function re-formats data from the "plotIndicatorTimeSeries" csv file format, into a data object that works with plotting functions in the IEAnalyzeR function.
 #'
+#' @import dplyr
+#' @import lubridate
 #'
 #' @param df Dataset with top 3 rows inlcuding metadata of indicator name, unit, and subcategory.
 #' @param trends T/F if you would like the function to calculate trends on this dataset.

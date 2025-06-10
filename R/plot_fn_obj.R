@@ -2,6 +2,11 @@
 #' @description
 #' This function plots an indicator time series figure from data that is formated from the "data_prep" function in IEAnalyzeR.
 #'
+#' @import dplyr
+#' @import ggplot2
+#' @import plotly
+#' @import ggimage
+#' @import lubridate
 #'
 #' @param df_obj Data object produced by the "data_prep" function.
 #' @param interactive Run plot through plotly to create an interactive version of the plot.
