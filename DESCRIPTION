@@ -30,4 +30,5 @@ Imports:
     ggplot2,
     dplyr,
     plotly,
-    ggimage
+    ggimage,
+    lubridate
