@@ -199,8 +199,8 @@ plot_fn_obj<-function (df_obj, interactive = FALSE, sep_ylabs = F, ylab_sublabel
       layout<-ggplot_build(plot)$layout$layout
       good_words<-c("id","indicator", "unit", "extent", "SCALE_Y", "PANEL")
       panel_info<-layout[, intersect(good_words, names(layout))]
-      ypos_df<-left_join(panel_info, ypos_df)
-      ypos_df<-left_join(df_obj$vals, ypos_df)
+      ypos_df<-suppressMessages(left_join(panel_info, ypos_df))
+      ypos_df<-suppressMessages(left_join(df_obj$vals, ypos_df))
     } else { ypos_df<-cbind(df_obj$vals, ypos_df) }
 
 
