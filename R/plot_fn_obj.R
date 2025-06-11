@@ -192,6 +192,9 @@ plot_fn_obj<-function (df_obj, interactive = FALSE, sep_ylabs = F, ylab_sublabel
   }
 
   if (!is.null(manual_ylab)) {
+    if (is.na(manual_ylab)) {
+      manual_ylab<-element_blank()
+    }
     plot <- plot + ylab(manual_ylab)
   }
   if (!is.null(manual_xlab)) {
