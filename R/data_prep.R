@@ -70,7 +70,7 @@ data_prep<-function (df, trends = T, subind = FALSE, anomaly=NULL)
           } else {
             year_full <- 1900 + year_part
           }
-          dmy(paste0("01-", month_part, "-", year_full))
+          lubridate::dmy(paste0("01-", month_part, "-", year_full))
 
         } else if (grepl("^[A-Za-z]{3}-[0-9]{2}$", x)) {
           parts <- strsplit(x, "-")[[1]]
@@ -81,7 +81,7 @@ data_prep<-function (df, trends = T, subind = FALSE, anomaly=NULL)
           } else {
             year_full <- 1900 + year_part
           }
-          dmy(paste0("01-", month_part, "-", year_full))
+          lubridate::dmy(paste0("01-", month_part, "-", year_full))
         } else {
           NA
         }
