@@ -205,7 +205,7 @@ data_prep<-function (df, trends = T, subind = FALSE, anomaly=NULL)
   }
   df_list$ribbon <- ribbon
 
-  df_list$labs <- rbind(colnames(df),df[1:2,])
+  df_list$labs <- rbind(colnames(df),df[1:2,], c("id", 1:ncol(df)))
   if (trends == T) {
     if (ncol(df_dat) < 3) {
       mean <- mean(as.numeric(df_dat$value), na.rm = T)
