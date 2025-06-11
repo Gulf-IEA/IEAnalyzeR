@@ -182,9 +182,31 @@ plot_fn_obj<-function (df_obj, interactive = FALSE, sep_ylabs = F, ylab_sublabel
                       allminyear+1.1*(allmaxyear-allminyear),
                       allminyear+1.2*(allmaxyear-allminyear))
 
+    #CREATING Y POS OFF SCALES
+    # Adding new YPOS
+    plot_dat<-ggplot_build(plot)$layout$panel_scales_y
+    y_ranges <- lapply(plot_dat, function(s) s$range$range)
+    ypos_mn <- sapply(y_ranges, function(r) r[1] + 0.7 * diff(r))
+    ypos_sl <- sapply(y_ranges, function(r) r[1] + 0.3 * diff(r))
+    ypos_df<-data.frame(SCALE_Y=1:length(y_ranges),
+                        ypos_mn=ypos_mn,
+                        ypos_sl=ypos_sl)
+
+
+    if(ncol(df_obj$data)>3) {
+
+      #Match y ranges to scales
+      layout<-ggplot_build(plot)$layout$layout
+      good_words<-c("id","indicator", "unit", "extent", "SCALE_Y", "PANEL")
+      panel_info<-layout[, intersect(good_words, names(layout))]
+      ypos_df<-left_join(panel_info, ypos_df)
+      ypos_df<-left_join(df_obj$vals, ypos_df)
+    } else { ypos_df<-cbind(df_obj$vals, ypos_df) }
+
+
     plot<- plot+
-      ggimage::geom_image(data=df_obj$vals,aes(image=mean_img, y=min_y+0.7 *(max_y-min_y)), x=trend_pos, size=0.15, na.rm = T)+
-      ggimage::geom_image(data=df_obj$vals,aes(image=slope_img, y=min_y+0.3 *(max_y-min_y)), x=trend_pos, size=0.15, na.rm = T)+
+      ggimage::geom_image(data=ypos_df,aes(image=mean_img, y=ypos_mn), x=trend_pos, size=0.15, na.rm = T)+
+      ggimage::geom_image(data=ypos_df,aes(image=slope_img, y=ypos_sl), x=trend_pos, size=0.15, na.rm = T)+
       coord_cartesian(clip = "off", expand = T)+
       theme(plot.margin = margin(3,(0.09 * fig.width * 72),3,3,unit = "pt"),
             panel.spacing.x = unit(0.09 * fig.width * 72, "pt"))
