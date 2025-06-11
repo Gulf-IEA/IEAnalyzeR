@@ -16,7 +16,7 @@
 data_prep<-function (df, trends = T, subind = FALSE, anomaly=NULL)
 {
 
-  img_dir="images/trend_symb/"
+  # system.file("images", paste0(,".png") , package = "IEAnalyzeR")
 
   ### helper function to interpolate across mean for pos/neg ribbon plotting
   poly_fix <- function(x, y, mean){
@@ -232,8 +232,10 @@ data_prep<-function (df, trends = T, subind = FALSE, anomaly=NULL)
       slope_word <- if_else(last5_slope > sd, "an increasing",
                             if_else(last5_slope < c(-sd), "a decreasing",
                                     "a stable"))
-      mean_img<- paste0(img_dir, mean_tr, ".png")
-      slope_img<-paste0(img_dir, slope_tr, ".png")
+      # mean_img<- paste0(img_dir, mean_tr, ".png")
+      mean_img<- system.file("images", paste0(mean_tr,".png") , package = "IEAnalyzeR")
+      # slope_img<-paste0(img_dir, slope_tr, ".png")
+      slope_img<- system.file("images", paste0(slope_tr,".png") , package = "IEAnalyzeR")
       mid_y<-(diff(range(na.omit(df_dat)$value))/2)+min(na.omit(df_dat)$value)
       min_y<-min(na.omit(df_dat)$value)
       max_y<-max(na.omit(df_dat)$value)
@@ -280,8 +282,10 @@ data_prep<-function (df, trends = T, subind = FALSE, anomaly=NULL)
         slope_word <- if_else(last5_slope > sd, "an increasing",
                               if_else(last5_slope < c(-sd), "a decreasing",
                                       "a stable"))
-        mean_img<- paste0(img_dir, mean_tr, ".png")
-        slope_img<-paste0(img_dir, slope_tr, ".png")
+        # mean_img<- paste0(img_dir, mean_tr, ".png")
+        mean_img<- system.file("images", paste0(mean_tr,".png") , package = "IEAnalyzeR")
+        # slope_img<-paste0(img_dir, slope_tr, ".png")
+        slope_img<- system.file("images", paste0(slope_tr,".png") , package = "IEAnalyzeR")
         mid_y<-(diff(range(na.omit(sub_df)$value))/2)+min(na.omit(sub_df)$value)
         min_y<-min(na.omit(sub_df)$value)
         max_y<-max(na.omit(sub_df)$value)
