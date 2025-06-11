@@ -16,7 +16,7 @@
 data_prep<-function (df, trends = T, subind = FALSE, anomaly=NULL)
 {
 
-  img_dir="../images/trend_symb/"
+  img_dir="images/trend_symb/"
 
   ### helper function to interpolate across mean for pos/neg ribbon plotting
   poly_fix <- function(x, y, mean){
