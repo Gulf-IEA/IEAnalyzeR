@@ -198,9 +198,15 @@ plot_fn_obj<-function (df_obj, interactive = FALSE, sep_ylabs = F, ylab_sublabel
     plot <- plot + ylab(manual_ylab)
   }
   if (!is.null(manual_xlab)) {
+    if (is.na(manual_xlab)) {
+      manual_xlab<-element_blank()
+    }
     plot <- plot + xlab(manual_xlab)
   }
   if (!is.null(manual_title)) {
+    if (is.na(manual_title)) {
+      manual_title<-element_blank()
+    }
     plot <- plot + ggtitle(manual_title)
   }
 
