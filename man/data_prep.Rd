@@ -4,18 +4,20 @@
 \alias{data_prep}
 \title{Title}
 \usage{
-data_prep(df, trends = T, subind = "extent")
+data_prep(df, trends = T, subind = FALSE, anomaly = NULL)
 }
 \arguments{
 \item{df}{Dataset with top 3 rows inlcuding metadata of indicator name, unit, and subcategory.}
 
 \item{trends}{T/F if you would like the function to calculate trends on this dataset.}
 
-\item{subind}{How is the data categorized for sun indicators. Options "extent" or "unit".}
+\item{subind}{How is the data categorized for sub indicators. Options "extent" or "unit".}
+
+\item{anomaly}{Calculate and replace values with either "monthly" or "stdmonthly" values}
 }
 \value{
-An object with 5 datasets used in "plot_fn_obj".
+An object with datasets used in "plot_fn_obj".
 }
 \description{
-This function reformats data from the "plotIndicatorTimeSeries" format, into a data object that works with plotting functions in the IEAnalyzeR function.
+This function re-formats data from the "plotIndicatorTimeSeries" csv file format, into a data object that works with plotting functions in the IEAnalyzeR function.
 }
