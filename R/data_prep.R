@@ -51,59 +51,25 @@ data_prep<-function (df, trends = T, subind = FALSE, anomaly=NULL)
     df_nm<-paste(df_nm,anomaly,"anom",sep = "_")
   }
 
-
   df_list <- list()
   df_dat <- df[3:nrow(df), c(1:ncol(df))]
   options(scipen = 999)
 
-  #Add Clean Dates just for BB ESR
-  if (any(grepl("[A-Za-z]", df_dat[,1]))) {
 
-    clean_dates_partial<- function(x) {
-      fix_dates <- function(x) {
-        if (grepl("^[0-9]{1,2}-[A-Za-z]{3}$", x)) {
-          parts <- strsplit(x, "-")[[1]]
-          year_part <- as.numeric(parts[1])
-          month_part <- parts[2]
-          if (year_part <= 25) {
-            year_full <- 2000 + year_part
-          } else {
-            year_full <- 1900 + year_part
-          }
-          lubridate::dmy(paste0("01-", month_part, "-", year_full))
-
-        } else if (grepl("^[A-Za-z]{3}-[0-9]{2}$", x)) {
-          parts <- strsplit(x, "-")[[1]]
-          month_part <- parts[1]
-          year_part <- as.numeric(parts[2])
-          if (year_part <= 25) {
-            year_full <- 2000 + year_part
-          } else {
-            year_full <- 1900 + year_part
-          }
-          lubridate::dmy(paste0("01-", month_part, "-", year_full))
-        } else {
-          NA
-        }
-      }
-      dates_parsed<-vapply(x, fix_dates, as.Date(NA))
-      dates_parsed<-as.Date(dates_parsed, origin = "1970-01-01")
-
-      #Partial Year
-      date_to_partial_year <- function(date) {
-        if (is.na(date)) return(NA)
-        year <- as.numeric(format(date, "%Y"))
-        month <- as.numeric(format(date, "%m"))
-        year + (month - 1) / 12
-      }
-
-      partial_year <- sapply(dates_parsed, date_to_partial_year)
-      partial_year
-
-    }
-
-    df_dat[,1]<-clean_dates_partial(df_dat[,1])
+  ### Helper function for converting dates
+  clean_dates_to_partial_year <- function(date_strings) {
+    date_formats = c("m-Y", "bY", "Ym", "Yb", "b-y", "y-b")
+    parsed_dates = parse_date_time(date_strings, orders = date_formats, quiet = TRUE)
+    partial_years = year(parsed_dates) + (month(parsed_dates) - 1) / 12
+    return(partial_years)
   }
+  ### end helper function
+
+
+  if (!all(grepl("^[0-9]{4}$", df_dat[, 1]) | is.na(df_dat[, 1]))) {
+    df_dat[, 1] <- clean_dates_to_partial_year(df_dat[, 1])
+  }
+
 
   #Change df_dat to be anomaly if chose
   if (!is.null(anomaly)) {
