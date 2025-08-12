@@ -5,7 +5,7 @@
 #' @param min_max_year An integer specifying the minimum value for the "Max year" column to filter the results.
 #' @param include_gt A logical value. If TRUE, a gt table is returned; otherwise, a data frame is returned.
 #' @return A gt table or a data frame summarizing the trend analysis results.
-#' @importFrom tidyverse filter
+#' @importFrom dplyr filter
 #' @importFrom gt gt
 #' @examples
 #' # table = create_trend_table(folder_path = "path/to/your/data/folder", stmon_inds = c("My_Indicator_1", "My_Indicator_2"), min_max_year = 2020)
