@@ -7,6 +7,7 @@
 #' @return A gt table or a data frame summarizing the trend analysis results.
 #' @importFrom dplyr filter
 #' @importFrom gt gt
+#' @importFrom tidyr pivot_wider drop_na
 #' @examples
 #' # table = create_trend_table(folder_path = "path/to/your/data/folder", stmon_inds = c("My_Indicator_1", "My_Indicator_2"), min_max_year = 2020)
 #' # print(table)
