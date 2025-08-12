@@ -27,6 +27,12 @@ A gt table or a data frame summarizing the trend analysis results.
 This function processes time series data, performs trend analysis, and creates a formatted summary table.
 }
 \examples{
-# table = create_trend_table(folder_path = "path/to/your/data/folder", stmon_inds = c("My_Indicator_1", "My_Indicator_2"), min_max_year = 2020)
-# print(table)
+# For a real-world example, you would replace "path/to/your/data/folder"
+# with the actual path to your data.
+#
+# # Assuming a folder "indicator_objects/objects_as_csvs/" exists with data
+# # table <- create_trend_table(folder_path = "indicator_objects/objects_as_csvs/",
+# #                              stmon_inds = c("Carib_SST", "turbidity", "carib_Chl"),
+# #                              min_max_year = 2022)
+# # print(table)
 }

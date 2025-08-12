@@ -6,11 +6,19 @@
 #' @param include_gt A logical value. If TRUE, a gt table is returned; otherwise, a data frame is returned.
 #' @return A gt table or a data frame summarizing the trend analysis results.
 #' @importFrom dplyr filter
-#' @importFrom gt gt
-#' @importFrom tidyr pivot_wider drop_na
+#' @importFrom gt gt tab_options tab_row_group tab_style cols_label
+#' @importFrom tidyr drop_na
+#' @importFrom readr read_csv
+#' @importFrom tools file_path_sans_ext
 #' @examples
-#' # table = create_trend_table(folder_path = "path/to/your/data/folder", stmon_inds = c("My_Indicator_1", "My_Indicator_2"), min_max_year = 2020)
-#' # print(table)
+#' # For a real-world example, you would replace "path/to/your/data/folder"
+#' # with the actual path to your data.
+#' #
+#' # # Assuming a folder "indicator_objects/objects_as_csvs/" exists with data
+#' # # table <- create_trend_table(folder_path = "indicator_objects/objects_as_csvs/",
+#' # #                              stmon_inds = c("Carib_SST", "turbidity", "carib_Chl"),
+#' # #                              min_max_year = 2022)
+#' # # print(table)
 #' @export
 
 create_trend_table <- function(
@@ -30,7 +38,7 @@ create_trend_table <- function(
 
   for (file in csv_files) {
     file_name <- tools::file_path_sans_ext(basename(file))
-    data <- read.csv(file, check.names = FALSE)
+    data <- readr::read_csv(file, check.names = FALSE)
 
     processed_data <- NULL
 
