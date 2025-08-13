@@ -24,7 +24,7 @@
 create_trend_table <- function(
     folder_path = "indicator_objects/objects_as_csvs/",
     stmon_inds = NULL,
-    min_max_year = NULL,
+    min_max_year = 0,
     include_gt = TRUE
 ) {
 
