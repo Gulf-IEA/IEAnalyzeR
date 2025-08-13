@@ -29,6 +29,8 @@ RoxygenNote: 7.3.2
 Imports: 
     ggplot2,
     dplyr,
+    tidyverse,
+    gt,
     plotly,
     ggimage,
     lubridate
