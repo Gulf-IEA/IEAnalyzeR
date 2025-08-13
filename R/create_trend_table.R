@@ -23,8 +23,8 @@
 
 create_trend_table <- function(
     folder_path = "indicator_objects/objects_as_csvs/",
-    stmon_inds = c("Carib_SST", "turbidity", "carib_Chl"),
-    min_max_year = 2022,
+    stmon_inds = NULL,
+    min_max_year = NULL,
     include_gt = TRUE
 ) {
 
