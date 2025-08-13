@@ -5,11 +5,11 @@
 #' @param min_max_year An integer specifying the minimum value for the "Max year" column to filter the results.
 #' @param include_gt A logical value. If TRUE, a gt table is returned; otherwise, a data frame is returned.
 #' @return A gt table or a data frame summarizing the trend analysis results.
-#' @importFrom dplyr filter
-#' @importFrom gt gt tab_options tab_row_group tab_style cols_label
-#' @importFrom tidyr drop_na
-#' @importFrom readr read_csv
-#' @importFrom tools file_path_sans_ext
+#' @import dplyr
+#' @import gt
+#' @import tidyr
+#' @import readr
+#' @import tools
 #' @examples
 #' # For a real-world example, you would replace "path/to/your/data/folder"
 #' # with the actual path to your data.
