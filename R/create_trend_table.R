@@ -38,7 +38,7 @@ create_trend_table <- function(
 
   for (file in csv_files) {
     file_name <- tools::file_path_sans_ext(basename(file))
-    data <- readr::read_csv(file, check.names = FALSE)
+    data <- read.csv(file, check.names = FALSE)
 
     processed_data <- NULL
 
