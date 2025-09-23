@@ -1,0 +1,23 @@
+---
+title: "code_template"
+format: html
+---
+
+# Data Download Code
+Here is text
+```{r}
+read.csv()
+```
+
+# Data Manipulation
+explaining the 
+```{r}
+2+2
+```
+
+# Data prep
+chunks
+```{r}
+IEAnalyzeR::data_prep()
+```
+
