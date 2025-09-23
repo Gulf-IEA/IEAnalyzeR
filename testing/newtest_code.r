@@ -1,3 +1,5 @@
+# Created on 2025-09-23
+
 # --------------------------------------------------------
 # Indicator Analysis Template
 # --------------------------------------------------------
@@ -5,10 +7,8 @@
 # 0. Setup ------------------------------------------------
 library(tidyverse)
 # library(yourpackage)  # <- add your package here
-# Source Data:
-#   https://example.com/data.csv
 
-indicator_name <- "Example Indicator"
+indicator_name <- "newtest"
 source_data <- "https://example.com/data.csv"
 
 # 1. Data Acquisition -------------------------------------

@@ -56,8 +56,8 @@ create_indicator_template <- function(indicator_root_name,
 ```
 
 ```{r}
-create_indicator_template(indicator_root_name = "testind",
-                          format = "R")
+create_indicator_template(indicator_root_name = "newtest",
+                          format = "qmd")
 ```
 
 
@@ -108,6 +108,11 @@ template_dir = "../testing"
 
   message("Template created: ", file_path)
   invisible(file_path)
+
+
+```
+
+```{r}
 
 
 ```

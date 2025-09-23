@@ -1,3 +1,7 @@
+<!--
+# Created on 2025-09-23
+-->
+
 ---
 title: "Indicator Analysis Template"
 format: html
@@ -13,7 +17,7 @@ library(tidyverse)
 library(janitor)
 # library(yourpackage)  # <- add your package here
 
-indicator_name <- "Example Indicator"
+indicator_name <- "newtest"
 source_data <- "https://example.com/data.csv"
 ```
 
@@ -52,7 +56,6 @@ result <- prepared |>
 write_csv(result, "results/example_indicator.csv")
 ```
 
-# 6. Quick Plot
-This is not the final plot but a way to metric.
+
 
 
