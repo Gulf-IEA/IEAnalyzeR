@@ -15,8 +15,8 @@ create_metric_code_file <- function(metric_root_name,
                                     format = c("R", "qmd"),
                                     data_type= c("automated", "non-automated", "confidential")) {
 
-  out_dir = here::here("testing")
-  template_dir = here::here("testing")
+  out_dir = here::here(paste0("scripts/metrics/",data_type))
+  template_dir = here::here("scripts/other/templates")
 
   # Standardize filetype to lowercase so input is NOT case sensitive
   format <- tolower(format[1])
