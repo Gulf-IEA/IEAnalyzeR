@@ -1,0 +1,79 @@
+---
+title: "Metric Analysis Code"
+format: html
+execute: 
+  echo: true
+  warning: false
+---
+
+File created on FILE CREATION DATE
+
+# 0. Setup
+Add any packages that are needed for analysis in this code chunk. 
+```{r packages}
+library(IEAnalyzeR)
+```
+
+File Naming Setup.
+!! Auto generated-Do Not Change !!
+```{r}
+
+root_name<- "WILL CHANGE WHEN CREATED"
+
+csv_filename<-paste0("data/formatted/formatted_csvs/", root_name, "_formatted.csv") 
+object_filename<-paste0("data/formatted/final_objects/", root_name, "_object.rds")
+plot_filename<-paste0("figures/plots/", root_name, "_plot.png")
+
+```
+
+# 1. Read Data
+Pull data from its source:
+Manual data: data/unformatted data
+Automated data: Add script for data call (API, package, etc.)
+Confidential data: Store locally in the confidential data folder
+    - This folder is excluded using gitignore and will not push to the GitHub repo
+```{r}
+
+```
+
+# 2. Data Transformation
+Transform the data to fit the IEA data format. 
+For more info on IEA data format go HERE, or use THIS FUNCTION to view dummy data.
+```{r}
+
+```
+
+# 3. Create Data_Prep object
+Please use your formatted CSV to create a "data_prep" object.
+For more info on the data_prep function please go HERE
+```{r}
+data_obj<-IEAnalyzeR::data_prep()
+```
+
+# 4. Save Formatted csv and data_prep object
+This will save your data to the appropriate folders. 
+Please replace "formatted_csv" with the name of your final formatted data.
+```{r}
+#Save formatted CSV
+write.csv(formatted_csv, file = csv_filename, row.names = F)
+
+#Save data_prep object
+saveRDS(data_obj, file = object_filename)
+```
+
+# 5. Preview Plot
+Use the IEAnalyzeR plotting function to preview the data. This will not necessarily be the final figure used in reports.
+For more info on the plot_fn_obj function go HERE
+```{r}
+
+IEAnalyzeR::plot_fn_obj(df_obj = data_obj)
+
+```
+
+# 6. Save plot
+This will save the plot to the correct folder.
+Adjust height & width using (height=, width=, unit="in") if needed.
+```{r}
+ggsave(filename = plot_filename)
+```
+
