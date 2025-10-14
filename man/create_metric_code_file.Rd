@@ -7,7 +7,8 @@
 create_metric_code_file(
   metric_root_name,
   format = c("R", "qmd"),
-  data_type = c("automated", "non-automated", "confidential")
+  data_type = c("automated", "non-automated", "confidential"),
+  override = F
 )
 }
 \arguments{

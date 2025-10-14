@@ -13,7 +13,8 @@
 
 create_metric_code_file <- function(metric_root_name,
                                     format = c("R", "qmd"),
-                                    data_type= c("automated", "non-automated", "confidential")) {
+                                    data_type= c("automated", "non-automated", "confidential"),
+                                    override=F) {
 
   out_dir = here::here(paste0("scripts/metrics/",data_type))
   template_dir = here::here("scripts/other/templates")
@@ -34,6 +35,13 @@ create_metric_code_file <- function(metric_root_name,
 
   if (!file.exists(template_file)) {
     stop("Template file not found: ", template_file)
+  }
+
+  # Failsafe: check if file already exists
+  if (file.exists(file_path) && !override) {
+    warning("File already exists: ", file_path,
+            "\nSet `override = TRUE` to overwrite.")
+    return(invisible(NULL))
   }
 
   # Read template
