@@ -3,7 +3,7 @@
 #' This function plots an indicator time series figure from data that is formated from the "data_prep" function in IEAnalyzeR.
 #'
 #' @import dplyr
-#' @import ggplot2
+#' @rawNamespace import(ggplot2, except = "last_plot")
 #' @import plotly
 #' @import ggimage
 #' @import lubridate

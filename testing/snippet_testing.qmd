@@ -1,0 +1,116 @@
+---
+title: "snippet_testing"
+format: html
+---
+
+# Creating function to create new file
+```{r, eval=F}
+create_indicator_template <- function(indicator_root_name, 
+                                      format = c("R", "qmd"), 
+                                      out_dir = "../testing", 
+                                      template_dir = "../testing") {
+  # Normalize to lowercase so input is NOT case sensitive
+  format <- tolower(format[1])
+  
+  if (!format %in% c("r", "qmd")) {
+    stop('format must be "R" or "qmd" (any capitalization works)')
+  }
+
+  # # Ensure output directory exists
+  # if (!dir.exists(out_dir)) dir.create(out_dir, recursive = TRUE)
+
+  # Construct file names
+  file_name <- paste0(indicator_root_name, "_code.", format)
+  file_path <- file.path(out_dir, file_name)
+
+  # Path to template
+  template_file <- file.path(template_dir, paste0("indicator_code_template.", format))
+
+  if (!file.exists(template_file)) {
+    stop("Template file not found: ", template_file)
+  }
+
+  # Read template
+  template <- readLines(template_file)
+
+  # Replace placeholder with actual indicator name
+  template <- gsub("Example Indicator", indicator_root_name, template)
+
+  # Add a timestamp header
+  timestamp <- paste0("# Created on ", Sys.Date())
+  if (format == "r") {
+    template <- c(timestamp, "", template)
+  } else if (format == "qmd") {
+    # Safer to add timestamp as a comment instead of code chunk
+    template <- c("<!--", timestamp, "-->", "", template)
+  }
+
+  # Write out
+  writeLines(template, file_path)
+
+  message("Template created: ", file_path)
+  invisible(file_path)
+}
+
+
+```
+
+```{r, eval=F}
+create_indicator_template(indicator_root_name = "newtest",
+                          format = "qmd")
+```
+
+
+### New function to make code files
+```{r}
+library(here)
+
+create_metric_code_file <- function(metric_root_name, 
+                                    format = c("R", "qmd"),
+                                    data_type= c("automated", "non-automated", "confidential")) {
+ 
+  out_dir = here("testing")
+  template_dir = here("testing")
+  
+  # Standardize filetype to lowercase so input is NOT case sensitive
+  format <- tolower(format[1])
+  
+  if (!format %in% c("r", "qmd")) {
+    stop('Format must be "R" or "qmd" (any capitalization works)')
+  }
+  
+  # Construct file names
+  file_name <- paste0(metric_root_name, "_code.", format)
+  file_path <- file.path(out_dir, file_name)
+
+  # Path to template
+  template_file <- file.path(template_dir, paste0("metric_code_template.", format))
+
+  if (!file.exists(template_file)) {
+    stop("Template file not found: ", template_file)
+  }
+  
+  # Read template
+  template <- readLines(template_file)
+
+  # Replace placeholder with actual indicator name
+  template <- gsub("WILL CHANGE WHEN CREATED", metric_root_name, template)
+  
+  # Add a timestamp header
+  template <- gsub("FILE CREATION DATE", Sys.Date(), template)
+
+  
+  # Write out
+  writeLines(template, file_path)
+
+  message("Template created: ", file_path)
+  invisible(file_path)
+}
+```
+
+
+Test new template and function
+```{r}
+create_metric_code_file("test_met", format = "qmd", data_type = "automated")
+```
+
