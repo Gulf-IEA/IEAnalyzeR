@@ -52,7 +52,45 @@ data_prep<-function (df, trends = T, subind = FALSE, anomaly=NULL)
   }
 
   df_list <- list()
-  df_dat <- df[3:nrow(df), c(1:ncol(df))]
+
+  ### MODIFICATION STARTS HERE ####
+
+  # 1. Initialize variables for finding the first valid cell in Row 3
+  is_row3_numeric <- FALSE
+
+  # Start scanning from Column 2 (as Column 1 is typically the Year/blank label)
+  for (i in 2:ncol(df)) {
+    cell_value <- as.character(df[3, i])
+
+    # Check if the cell has a value (is not blank)
+    if (cell_value != "" && !is.na(cell_value)) {
+      # Check if the non-empty cell is numeric
+      is_row3_numeric <- !is.na(suppressWarnings(as.numeric(cell_value)))
+      break # Stop scanning as soon as we find the first non-empty cell
+    }
+  }
+
+  # 2. Set Data Start Row and Metadata based on the check
+  if (is_row3_numeric) {
+    # Scenario 1: Row 3 contains a number. (Header = Indicator Name)
+    # Metadata is ColNames (Indicator), Row 1 (Units), Row 2 (Extent)
+    data_start_row <- 3
+    df_lab <- rbind(c(colnames(df)), as.character(df[1,]), as.character(df[2,]))
+
+  } else {
+    # Scenario 2: Row 3 contains a character/text (or is entirely empty, defaulting to FALSE).
+    # Numeric data starts at Row 4
+    data_start_row <- 4
+
+    # Metadata is Row 1 (Indicator), Row 2 (Units), Row 3 (Extent)
+    df_lab <- rbind(as.character(df[1,]), as.character(df[2,]), as.character(df[3,]))
+  }
+
+  # Extract the data based on the determined start row
+  df_dat <- df[data_start_row:nrow(df), c(1:ncol(df))]
+
+  ### END MODIFICATION ####
+
   options(scipen = 999)
 
 
