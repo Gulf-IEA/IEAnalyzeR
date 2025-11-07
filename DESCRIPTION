@@ -33,4 +33,7 @@ Imports:
     gt,
     plotly,
     ggimage,
-    lubridate
+    lubridate,
+    here,
+    readr,
+    tidyr

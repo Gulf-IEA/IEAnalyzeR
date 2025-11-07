@@ -29,12 +29,12 @@ dat <- data.frame(
   bio_spec2 = c(7, 3, 8, 8, 12)
 )
 
-# 2. Define ALL header components, starting with "" for the 'year' column
-indicator_names <- c("", "Biomass", "Biomass")
-unit_names <- c("", "Count", "Count")
-extent_names <- c("", "species A", "species B")
+# 2. Define header components for the data rows (ignore year)
+indicator_names <- c("Biomass", "Biomass")
+unit_names <- c("Count", "Count")
+extent_names <- c("species A", "species B")
 
 # 3. Call the function
-final_table <- convert_csv(dat, indicator_names, unit_names, extent_names)
+final_table <- convert_cleaned_data(dat, indicator_names, unit_names, extent_names)
 print(final_table)
 }

@@ -23,7 +23,7 @@
 #' extent_names <- c("species A", "species B")
 #'
 #' # 3. Call the function
-#' final_table <- convert_csv(dat, indicator_names, unit_names, extent_names)
+#' final_table <- convert_cleaned_data(dat, indicator_names, unit_names, extent_names)
 #' print(final_table)
 #' @export
 convert_cleaned_data <- function(data, indicator_names, unit_names, extent_names){

@@ -158,7 +158,7 @@ data_prep<-function (df, trends = T, subind = FALSE, anomaly=NULL)
     sub_list<-list()
     for (i in 2:ncol(df_dat)){
       sub_df<-df_dat[,c(1,i)]
-      df_lab<-rbind(colnames(df),df[1:2,])
+      #df_lab<-rbind(colnames(df),df[1:2,]) #deleted for flexibility in where the data start
       ind<-ifelse(subind=="extent", df_lab[3,i], ifelse(subind=="unit", df_lab[2,i], df_lab[1,i]))
       colnames(sub_df)<-c("year","value")
       sub_df<-as.data.frame(lapply(sub_df, as.numeric))
@@ -209,7 +209,8 @@ data_prep<-function (df, trends = T, subind = FALSE, anomaly=NULL)
   }
   df_list$ribbon <- ribbon
 
-  df_list$labs <- rbind(colnames(df),df[1:2,])
+  #df_list$labs <- rbind(colnames(df),df[1:2,]) #replaced with below for flexibility where data start
+  df_list$labs <- df_lab
   if (trends == T) {
     if (ncol(df_dat) < 3) {
       mean <- mean(as.numeric(df_dat$value), na.rm = T)
