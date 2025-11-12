@@ -1,0 +1,8 @@
+indicator,Biomass,Biomass
+unit,Count,Count
+extent,species A,species B
+2000,5,7
+2001,10,3
+2002,3,8
+2003,7,8
+2004,11,12
