@@ -1,0 +1,104 @@
+---
+title: "How to use IEAnalyzeR"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{How_to_use_IEAnalyzeR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Introduction
+
+This vignette demonstrates how to use the main functions in IEAnalyzeR to format and plot indicator time series data of varying formats.
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(IEAnalyzeR)
+```
+
+## Saving data in the proper format
+
+In order to run data through the data_prep function in IEAnalyzeR, which prepares it for plotting and pulls out relevant information, the data need to be formatted in a specific way and saved as a csv file.
+
+The function convert_cleaned_data will help you here. Every dataset needs to have time as the first column (either annual or monthly) and numeric values for the corresponding metrics in the remaining columns. convert_cleaned_data will add metadata in the first 3 rows of the data frame that data_prep will use for labeling. 
+
+Example with a single metric:
+```{r single-metric-example}
+head(single_metric)
+
+#Define header components for the data rows (ignore year)
+indicator_names <- c("Red fish biomass")
+unit_names <- c("Thousand pounds")
+extent_names <- c("")
+
+# 3. Call the function
+single_table <- convert_cleaned_data(single_metric, indicator_names, unit_names, extent_names)
+head(single_table)
+```
+
+
+Example with four metrics representing different areas:
+```{r annual-by-area-example}
+head(annual_by_area)
+
+#Define header components for the data rows (ignore year)
+indicator_names <- rep("Population", ncol(annual_by_area)-1)
+unit_names <- rep("Millions", ncol(annual_by_area)-1)
+extent_names <- c("Narnia", "Westeros", "Wakanda", "Arrakis")
+
+# 3. Call the function
+multi_table <- convert_cleaned_data(annual_by_area, indicator_names, unit_names, extent_names)
+head(multi_table)
+```
+
+
+Example with monthly data and different units:
+```{r multi-unit-monthly example}
+head(multi_unit_monthly)
+
+#Define header components for the data rows (ignore year)
+indicator_names <- rep("Environmental parameters", ncol(multi_unit_monthly)-1)
+unit_names <- c("degrees F", "ppm")
+extent_names <- c("Temperature", "Salinity")
+
+# 3. Call the function
+monthly_table <- convert_cleaned_data(multi_unit_monthly, indicator_names, unit_names, extent_names)
+head(monthly_table)
+```
+
+Now that our datasets are properly formatted with metadata rows, we will export them as csvs. Here we will save the files to a temporary location, but if you are working on a Gulf IEA Ecosystem Status Report, you will want to save this file to the formatted_csvs folder in the appropriate data folder depending on your data type.
+
+```{r save-csvs}
+# Create a temporary file path for the CSV output
+temp_path1 <- tempfile(pattern = "single_output", fileext = ".csv")
+temp_path2 <- tempfile(pattern = "multi_output", fileext = ".csv")
+temp_path3 <- tempfile(pattern = "monthly_output", fileext = ".csv")
+
+#Save each table to its unique temporary file path
+write.csv(single_table, file = temp_path1, row.names = FALSE)
+write.csv(multi_table, file = temp_path2, row.names = FALSE)
+write.csv(monthly_table, file = temp_path3, row.names = FALSE)
+```
+
+
+## Using the data_prep function
+
+The data_prep function is the core function of IEAnalyzeR. (Add some text here about what it does). You can simply specify the file path to your csv within the function.
+
+```{r}
+final_single_data <- IEAnalyzeR::data_prep(temp_path1)
+str(final_single_data)
+
+final_multi_data <- IEAnalyzeR::data_prep(temp_path2, subind = "extent")
+str(final_multi_data)
+
+final_monthly_data <- IEAnalyzeR::data_prep(temp_path3, subind = "unit")
+str(final_monthly_data)
+```
+

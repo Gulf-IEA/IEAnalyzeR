@@ -7,6 +7,7 @@
 #'   \item{year}{A vector of years.}
 #'   \item{Narnia}{A vector of random numbers.}
 #'   \item{Westeros}{A vector of random numbers.}
+#'   \item{Wakanda}{A vector of random numbers.}
 #'   \item{Arrakis}{A vector of random numbers.}
 #' }
 #' @source Simulated data

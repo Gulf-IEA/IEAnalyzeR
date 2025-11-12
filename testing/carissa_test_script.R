@@ -22,6 +22,7 @@ readr::write_csv(final_table, "testing/test_converted_table.csv")
 test = read.csv("testing/test_converted_table.csv", header = FALSE)
 
 test2 = IEAnalyzeR::data_prep(test, subind = "extent")
+test2 = IEAnalyzeR::data_prep("testing/test_converted_table.csv", subind = "extent")
 
 test2
 
