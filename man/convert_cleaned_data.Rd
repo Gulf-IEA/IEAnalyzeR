@@ -9,17 +9,17 @@ convert_cleaned_data(data, indicator_names, unit_names, extent_names)
 \arguments{
 \item{data}{A data frame or matrix containing numeric data only.}
 
-\item{indicator_names}{A character vector of names for the top most header row (the name of the indicator). The first name corresponding to year should be blank.}
+\item{indicator_names}{A character vector of names for the top most header row (the name of the indicator). The vector should be the length of the columns excluding the year column.}
 
-\item{unit_names}{A character vector of names for the second header row (e.g. units of measurement).}
+\item{unit_names}{A character vector of names for the second header row (e.g. units of measurement). The vector should be the length of the columns excluding the year column.}
 
-\item{extent_names}{A character vector of names for the third header row (e.g. area or species names).}
+\item{extent_names}{A character vector of names for the third header row (e.g. area or species names). The vector should be the length of the columns excluding the year column.}
 }
 \value{
-A data frame containing the three metadata rows followed by the data rows.
+A data frame containing the three metadata rows followed by the data rows that can be saved as a csv.
 }
 \description{
-This function takes a numeric data frame with year as column 1 and metric values in the remaining columns and combines it with three vectors representing different levels of header metadata (indicator, unit, and extent/sub-indicator). It returns a single data frame that is in the correct format for ingestion into the IEAnalyzeR data_prep function.
+This function takes a numeric data frame with year as column 1 and metric values in the remaining columns and combines it with three vectors representing different levels of header metadata (indicator, unit, and extent/sub-indicator). It returns a single data frame that once saved as a csv is in the correct format for ingestion into the IEAnalyzeR data_prep function.
 }
 \examples{
 # 1. Define dummy data
@@ -36,5 +36,5 @@ extent_names <- c("species A", "species B")
 
 # 3. Call the function
 final_table <- convert_cleaned_data(dat, indicator_names, unit_names, extent_names)
-print(final_table)
+write.csv(final_table, "Biomass_formatted.csv")
 }
