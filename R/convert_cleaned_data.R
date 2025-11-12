@@ -1,13 +1,13 @@
 #' Convert cleaned indicator dataset to indicator data format (with metadata rows)
 #'
-#' This function takes a numeric data frame with year as column 1 and metric values in the remaining columns and combines it with three vectors representing different levels of header metadata (indicator, unit, and extent/sub-indicator). It returns a single data frame that is in the correct format for ingestion into the IEAnalyzeR data_prep function.
+#' This function takes a numeric data frame with year as column 1 and metric values in the remaining columns and combines it with three vectors representing different levels of header metadata (indicator, unit, and extent/sub-indicator). It returns a single data frame that once saved as a csv is in the correct format for ingestion into the IEAnalyzeR data_prep function.
 #'
 #' @param data A data frame or matrix containing numeric data only.
-#' @param indicator_names A character vector of names for the top most header row (the name of the indicator). The first name corresponding to year should be blank.
-#' @param unit_names A character vector of names for the second header row (e.g. units of measurement).
-#' @param extent_names A character vector of names for the third header row (e.g. area or species names).
+#' @param indicator_names A character vector of names for the top most header row (the name of the indicator). The vector should be the length of the columns excluding the year column.
+#' @param unit_names A character vector of names for the second header row (e.g. units of measurement). The vector should be the length of the columns excluding the year column.
+#' @param extent_names A character vector of names for the third header row (e.g. area or species names). The vector should be the length of the columns excluding the year column.
 #'
-#' @returns A data frame containing the three metadata rows followed by the data rows.
+#' @returns A data frame containing the three metadata rows followed by the data rows that can be saved as a csv.
 #'
 #' @examples
 #' # 1. Define dummy data
@@ -24,7 +24,7 @@
 #'
 #' # 3. Call the function
 #' final_table <- convert_cleaned_data(dat, indicator_names, unit_names, extent_names)
-#' print(final_table)
+#' write.csv(final_table, "Biomass_formatted.csv")
 #' @export
 convert_cleaned_data <- function(data, indicator_names, unit_names, extent_names){
 
