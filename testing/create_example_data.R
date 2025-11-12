@@ -14,8 +14,10 @@ months_vector = seq.Date(from = start_date, to = end_date, by = "month")
 
 multi_unit_monthly <- data.frame(
   date = format(months_vector, "%Y-%m"),
-  temperature = c(25.89727645, 25.48104323, 25.33843609, 26.0708692, 27.11931808, 27.55626161, 27.79084524, 28.50071049, 28.94800842, 28.81906083, 28.36563713, 27.16899144),
-  salinity = runif(12, min = 10, max = 20)
+  temp_a = runif(12, min = 25, max = 29),
+  salinity_a = runif(12, min = 10, max = 20),
+  temp_b = runif(12, min = 25, max = 29),
+  salinity_b = runif(12, min = 10, max = 20)
 )
 
 #millions
@@ -29,5 +31,5 @@ annual_by_area <- data.frame(
 
 
 usethis::use_data(single_metric)
-usethis::use_data(multi_unit_monthly)
+usethis::use_data(multi_unit_monthly, overwrite = TRUE)
 usethis::use_data(annual_by_area)

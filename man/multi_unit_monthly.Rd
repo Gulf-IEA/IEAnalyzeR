@@ -5,11 +5,13 @@
 \alias{multi_unit_monthly}
 \title{Multi-unit monthly example data}
 \format{
-A data frame with 12 rows and 3 variables:
+A data frame with 12 rows and 5 variables:
 \describe{
   \item{date}{A vector of months.}
-  \item{temperature}{An example vector of temperatures.}
-  \item{salinity}{A vector of random numbers.}
+  \item{temp_a}{An vector of random numbers.}
+  \item{salinity_a}{A vector of random numbers.}
+  \item{temp_b}{An vector of random numbers.}
+  \item{salinity_b}{A vector of random numbers.}
 }
 }
 \source{
