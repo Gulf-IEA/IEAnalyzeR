@@ -37,3 +37,5 @@ Imports:
     here,
     readr,
     tidyr
+Depends: 
+    R (>= 3.5)
