@@ -5,7 +5,7 @@
 \alias{multi_unit_monthly}
 \title{Multi-unit monthly example data}
 \format{
-A data frame with 12 rows and 5 variables:
+A data frame with 132 rows and 5 variables:
 \describe{
   \item{date}{A vector of months.}
   \item{temp_a}{An vector of random numbers.}

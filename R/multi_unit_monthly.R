@@ -2,7 +2,7 @@
 #'
 #' A dataset containing simulated metric data for package examples. This example is for two metrics with different units and data in monthly format.
 #'
-#' @format A data frame with 12 rows and 5 variables:
+#' @format A data frame with 132 rows and 5 variables:
 #' \describe{
 #'   \item{date}{A vector of months.}
 #'   \item{temp_a}{An vector of random numbers.}
