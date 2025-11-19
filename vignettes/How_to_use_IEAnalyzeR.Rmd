@@ -99,7 +99,7 @@ final_multi_data <- IEAnalyzeR::data_prep(temp_path2, subind = "extent")
 str(final_multi_data)
 
 # With monthly data, we need to specify the anomaly argument. Either monthly or standardized monthly. THIS IS NOT WORKING RIGHT NOW
-# final_monthly_data <- IEAnalyzeR::data_prep(temp_path3, anomaly = "monthly")
+# final_monthly_data <- IEAnalyzeR::data_prep(temp_path3, anomaly = "monthly", subind = "extent")
 # str(final_monthly_data)
 ```
 
@@ -109,12 +109,12 @@ str(final_multi_data)
 IEAnalyzeR includes a standard plotting function (plot_fn_obj) that will plot the time series data after it has been passed through the data prep function. The trend = T argument will show the recent 5 year trend. 
 
 Example with the single metric dataset:
-```{r}
+```{r, fig.height=4, fig.width=6}
 IEAnalyzeR::plot_fn_obj(final_single_data, trend = T)
 ```
 
 Example with the multi-area data:
-```{r}
+```{r, fig.height=4, fig.width=6}
 IEAnalyzeR::plot_fn_obj(final_multi_data, trend = T)
 ```
 
