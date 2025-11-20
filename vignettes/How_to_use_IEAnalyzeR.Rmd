@@ -65,7 +65,7 @@ head(multi_unit_monthly)
 #Define header components for the data rows (ignore year)
 indicator_names <- rep("Environmental parameters", ncol(multi_unit_monthly)-1)
 unit_names <- c("Temperature (°F)", "Salinity (ppm)", "Temperature (°F)", "Salinity (ppm)")
-extent_names <- c("Area A", "Area B", "Area A", "Area B")
+extent_names <- c("Area A", "Area A", "Area B", "Area B")
 
 # 3. Call the function
 monthly_table <- convert_cleaned_data(multi_unit_monthly, indicator_names, unit_names, extent_names)
@@ -98,9 +98,9 @@ str(final_single_data)
 final_multi_data <- IEAnalyzeR::data_prep(temp_path2, subind = "extent")
 str(final_multi_data)
 
-# With monthly data, we need to specify the anomaly argument. Either monthly or standardized monthly. THIS IS NOT WORKING RIGHT NOW
-# final_monthly_data <- IEAnalyzeR::data_prep(temp_path3, anomaly = "monthly", subind = "extent")
-# str(final_monthly_data)
+# With monthly data, we need to specify the anomaly argument. Either monthly or standardized monthly.
+final_monthly_data <- IEAnalyzeR::data_prep(temp_path3, anomaly = "monthly", subind = "extent")
+str(final_monthly_data)
 ```
 
 
@@ -119,7 +119,7 @@ IEAnalyzeR::plot_fn_obj(final_multi_data, trend = T)
 ```
 
 Example with the monthly data:
-```{r}
-#IEAnalyzeR::plot_fn_obj(final_monthly_data, trend = T)
+```{r, fig.height=4, fig.width=6}
+IEAnalyzeR::plot_fn_obj(final_monthly_data, trend = T, sep_ylabs = TRUE, ylab_sublabel = c("extent", "unit"))
 ```
 

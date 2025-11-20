@@ -8,16 +8,25 @@ single_metric <- data.frame(
 )
 
 
+# Define the start and end dates
 start_date <- as.Date("2000-01-01")
 end_date <- as.Date("2010-12-01")
-months_vector = seq.Date(from = start_date, to = end_date, by = "month")
+
+# Create a vector of all monthly dates
+months_vector <- seq.Date(from = start_date, to = end_date, by = "month")
+
+# Calculate the total number of rows (should be 132)
+n_rows <- length(months_vector)
+
+# Create the DataFrame with 132 unique random numbers for each variable
+set.seed(42) # Re-setting the seed is good practice for reproducibility
 
 multi_unit_monthly <- data.frame(
-  date = format(months_vector, "%m-%Y"),
-  temp_a = runif(12, min = 25, max = 29),
-  salinity_a = runif(12, min = 10, max = 20),
-  temp_b = runif(12, min = 25, max = 29),
-  salinity_b = runif(12, min = 10, max = 20)
+  date = format(months_vector, "%Y-%m"), # Changed format for better sorting
+  temp_a = runif(n_rows, min = 25, max = 29),
+  salinity_a = runif(n_rows, min = 10, max = 20),
+  temp_b = runif(n_rows, min = 25, max = 29),
+  salinity_b = runif(n_rows, min = 10, max = 20)
 )
 
 #millions
