@@ -37,3 +37,9 @@ Imports:
     here,
     readr,
     tidyr
+Depends: 
+    R (>= 3.5)
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
