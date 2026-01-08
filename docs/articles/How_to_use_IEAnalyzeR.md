@@ -166,9 +166,9 @@ str(final_single_data)
 #>   ..$ allminyear: num 2000
 #>   ..$ allmaxyear: num 2024
 #>   ..$ mean_tr   : chr "circle_fill"
-#>   ..$ mean_img  : chr "C:/Users/carissa.gervasi/AppData/Local/Temp/RtmpIDBOo5/temp_libpatha9451b25dff/IEAnalyzeR/images/trend_symb/circle_fill.png"
+#>   ..$ mean_img  : chr "C:/Users/carissa.gervasi/AppData/Local/Programs/R/R-4.4.3/library/IEAnalyzeR/images/trend_symb/circle_fill.png"
 #>   ..$ slope_tr  : chr "arrow_down"
-#>   ..$ slope_img : chr "C:/Users/carissa.gervasi/AppData/Local/Temp/RtmpIDBOo5/temp_libpatha9451b25dff/IEAnalyzeR/images/trend_symb/arrow_down.png"
+#>   ..$ slope_img : chr "C:/Users/carissa.gervasi/AppData/Local/Programs/R/R-4.4.3/library/IEAnalyzeR/images/trend_symb/arrow_down.png"
 #>   ..$ mean_sym  : chr "●"
 #>   ..$ slope_sym : chr "↓"
 #>   ..$ mean_word : chr "within"
@@ -176,7 +176,7 @@ str(final_single_data)
 #>   ..$ mid_y     : num 62.9
 #>   ..$ min_y     : num 26.6
 #>   ..$ max_y     : num 99.1
-#>   ..$ df_nm     : chr "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\RtmpEHlgps\\single_output2b484de968e7.csv"
+#>   ..$ df_nm     : chr "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\Rtmpu4sa4X\\single_output68c3983563.csv"
 
 final_multi_data <- IEAnalyzeR::data_prep(temp_path2, subind = "extent")
 str(final_multi_data)
@@ -203,9 +203,9 @@ str(final_multi_data)
 #>   ..$ mean      : num [1:4] 48.12 38.83 5.78 15.22
 #>   ..$ sd        : num [1:4] 0.596 0.542 0.469 0.479
 #>   ..$ mean_tr   : chr [1:4] "circle_fill" "circle_fill" "circle_fill" "circle_fill"
-#>   ..$ mean_img  : chr [1:4] "C:/Users/carissa.gervasi/AppData/Local/Temp/RtmpIDBOo5/temp_libpatha9451b25dff/IEAnalyzeR/images/trend_symb/circle_fill.png" "C:/Users/carissa.gervasi/AppData/Local/Temp/RtmpIDBOo5/temp_libpatha9451b25dff/IEAnalyzeR/images/trend_symb/circle_fill.png" "C:/Users/carissa.gervasi/AppData/Local/Temp/RtmpIDBOo5/temp_libpatha9451b25dff/IEAnalyzeR/images/trend_symb/circle_fill.png" "C:/Users/carissa.gervasi/AppData/Local/Temp/RtmpIDBOo5/temp_libpatha9451b25dff/IEAnalyzeR/images/trend_symb/circle_fill.png"
+#>   ..$ mean_img  : chr [1:4] "C:/Users/carissa.gervasi/AppData/Local/Programs/R/R-4.4.3/library/IEAnalyzeR/images/trend_symb/circle_fill.png" "C:/Users/carissa.gervasi/AppData/Local/Programs/R/R-4.4.3/library/IEAnalyzeR/images/trend_symb/circle_fill.png" "C:/Users/carissa.gervasi/AppData/Local/Programs/R/R-4.4.3/library/IEAnalyzeR/images/trend_symb/circle_fill.png" "C:/Users/carissa.gervasi/AppData/Local/Programs/R/R-4.4.3/library/IEAnalyzeR/images/trend_symb/circle_fill.png"
 #>   ..$ slope_tr  : chr [1:4] "arrow_up" "arrow_leftright" "arrow_leftright" "arrow_leftright"
-#>   ..$ slope_img : chr [1:4] "C:/Users/carissa.gervasi/AppData/Local/Temp/RtmpIDBOo5/temp_libpatha9451b25dff/IEAnalyzeR/images/trend_symb/arrow_up.png" "C:/Users/carissa.gervasi/AppData/Local/Temp/RtmpIDBOo5/temp_libpatha9451b25dff/IEAnalyzeR/images/trend_symb/arr"| __truncated__ "C:/Users/carissa.gervasi/AppData/Local/Temp/RtmpIDBOo5/temp_libpatha9451b25dff/IEAnalyzeR/images/trend_symb/arr"| __truncated__ "C:/Users/carissa.gervasi/AppData/Local/Temp/RtmpIDBOo5/temp_libpatha9451b25dff/IEAnalyzeR/images/trend_symb/arr"| __truncated__
+#>   ..$ slope_img : chr [1:4] "C:/Users/carissa.gervasi/AppData/Local/Programs/R/R-4.4.3/library/IEAnalyzeR/images/trend_symb/arrow_up.png" "C:/Users/carissa.gervasi/AppData/Local/Programs/R/R-4.4.3/library/IEAnalyzeR/images/trend_symb/arrow_leftright.png" "C:/Users/carissa.gervasi/AppData/Local/Programs/R/R-4.4.3/library/IEAnalyzeR/images/trend_symb/arrow_leftright.png" "C:/Users/carissa.gervasi/AppData/Local/Programs/R/R-4.4.3/library/IEAnalyzeR/images/trend_symb/arrow_leftright.png"
 #>   ..$ mean_sym  : chr [1:4] "●" "●" "●" "●"
 #>   ..$ slope_sym : chr [1:4] "↑" "→" "→" "→"
 #>   ..$ mean_word : chr [1:4] "within" "within" "within" "within"
@@ -215,7 +215,7 @@ str(final_multi_data)
 #>   ..$ mid_y     : num [1:4] 48.02 38.85 5.72 14.96
 #>   ..$ min_y     : num [1:4] 47.1 38 5 14
 #>   ..$ max_y     : num [1:4] 48.97 39.7 6.44 15.93
-#>   ..$ df_nm     : chr [1:4] "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\RtmpEHlgps\\multi_output2b48740c9f1.csv" "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\RtmpEHlgps\\multi_output2b48740c9f1.csv" "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\RtmpEHlgps\\multi_output2b48740c9f1.csv" "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\RtmpEHlgps\\multi_output2b48740c9f1.csv"
+#>   ..$ df_nm     : chr [1:4] "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\Rtmpu4sa4X\\multi_output68c128b7ceb.csv" "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\Rtmpu4sa4X\\multi_output68c128b7ceb.csv" "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\Rtmpu4sa4X\\multi_output68c128b7ceb.csv" "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\Rtmpu4sa4X\\multi_output68c128b7ceb.csv"
 
 # With monthly data, we need to specify the anomaly argument. Either monthly or standardized monthly.
 final_monthly_data <- IEAnalyzeR::data_prep(temp_path3, anomaly = "monthly", subind = "extent")
@@ -243,9 +243,9 @@ str(final_monthly_data)
 #>   ..$ mean      : num [1:4] -0.0000000000000001616 -0.0000000000000001078 -0.0000000000000001616 0.0000000000000000269
 #>   ..$ sd        : num [1:4] 1.14 2.73 1.13 2.85
 #>   ..$ mean_tr   : chr [1:4] "circle_fill" "circle_fill" "circle_fill" "circle_fill"
-#>   ..$ mean_img  : chr [1:4] "C:/Users/carissa.gervasi/AppData/Local/Temp/RtmpIDBOo5/temp_libpatha9451b25dff/IEAnalyzeR/images/trend_symb/circle_fill.png" "C:/Users/carissa.gervasi/AppData/Local/Temp/RtmpIDBOo5/temp_libpatha9451b25dff/IEAnalyzeR/images/trend_symb/circle_fill.png" "C:/Users/carissa.gervasi/AppData/Local/Temp/RtmpIDBOo5/temp_libpatha9451b25dff/IEAnalyzeR/images/trend_symb/circle_fill.png" "C:/Users/carissa.gervasi/AppData/Local/Temp/RtmpIDBOo5/temp_libpatha9451b25dff/IEAnalyzeR/images/trend_symb/circle_fill.png"
+#>   ..$ mean_img  : chr [1:4] "C:/Users/carissa.gervasi/AppData/Local/Programs/R/R-4.4.3/library/IEAnalyzeR/images/trend_symb/circle_fill.png" "C:/Users/carissa.gervasi/AppData/Local/Programs/R/R-4.4.3/library/IEAnalyzeR/images/trend_symb/circle_fill.png" "C:/Users/carissa.gervasi/AppData/Local/Programs/R/R-4.4.3/library/IEAnalyzeR/images/trend_symb/circle_fill.png" "C:/Users/carissa.gervasi/AppData/Local/Programs/R/R-4.4.3/library/IEAnalyzeR/images/trend_symb/circle_fill.png"
 #>   ..$ slope_tr  : chr [1:4] "arrow_up" "arrow_leftright" "arrow_leftright" "arrow_leftright"
-#>   ..$ slope_img : chr [1:4] "C:/Users/carissa.gervasi/AppData/Local/Temp/RtmpIDBOo5/temp_libpatha9451b25dff/IEAnalyzeR/images/trend_symb/arrow_up.png" "C:/Users/carissa.gervasi/AppData/Local/Temp/RtmpIDBOo5/temp_libpatha9451b25dff/IEAnalyzeR/images/trend_symb/arr"| __truncated__ "C:/Users/carissa.gervasi/AppData/Local/Temp/RtmpIDBOo5/temp_libpatha9451b25dff/IEAnalyzeR/images/trend_symb/arr"| __truncated__ "C:/Users/carissa.gervasi/AppData/Local/Temp/RtmpIDBOo5/temp_libpatha9451b25dff/IEAnalyzeR/images/trend_symb/arr"| __truncated__
+#>   ..$ slope_img : chr [1:4] "C:/Users/carissa.gervasi/AppData/Local/Programs/R/R-4.4.3/library/IEAnalyzeR/images/trend_symb/arrow_up.png" "C:/Users/carissa.gervasi/AppData/Local/Programs/R/R-4.4.3/library/IEAnalyzeR/images/trend_symb/arrow_leftright.png" "C:/Users/carissa.gervasi/AppData/Local/Programs/R/R-4.4.3/library/IEAnalyzeR/images/trend_symb/arrow_leftright.png" "C:/Users/carissa.gervasi/AppData/Local/Programs/R/R-4.4.3/library/IEAnalyzeR/images/trend_symb/arrow_leftright.png"
 #>   ..$ mean_sym  : chr [1:4] "●" "●" "●" "●"
 #>   ..$ slope_sym : chr [1:4] "↑" "→" "→" "→"
 #>   ..$ mean_word : chr [1:4] "within" "within" "within" "within"
@@ -255,7 +255,7 @@ str(final_monthly_data)
 #>   ..$ mid_y     : num [1:4] -0.148 0.536 0.111 0.182
 #>   ..$ min_y     : num [1:4] -2.23 -4.76 -2.22 -5.73
 #>   ..$ max_y     : num [1:4] 1.94 5.83 2.44 6.1
-#>   ..$ df_nm     : chr [1:4] "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\RtmpEHlgps\\monthly_output2b487f3923a7.csv_monthly_anom" "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\RtmpEHlgps\\monthly_output2b487f3923a7.csv_monthly_anom" "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\RtmpEHlgps\\monthly_output2b487f3923a7.csv_monthly_anom" "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\RtmpEHlgps\\monthly_output2b487f3923a7.csv_monthly_anom"
+#>   ..$ df_nm     : chr [1:4] "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\Rtmpu4sa4X\\monthly_output68c6bf03964.csv_monthly_anom" "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\Rtmpu4sa4X\\monthly_output68c6bf03964.csv_monthly_anom" "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\Rtmpu4sa4X\\monthly_output68c6bf03964.csv_monthly_anom" "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\Rtmpu4sa4X\\monthly_output68c6bf03964.csv_monthly_anom"
 ```
 
 ## Plotting the data
