@@ -9,7 +9,7 @@ Authors@R:
            role = c("aut", "cre")),
     person(given = "Carissa",
            family = "Gervasi",
-           role = c("aut", "cre"),
+           role = c("aut"),
            email = "carissa.gervasi@noaa.gov",
            comment = c(ORCID = "0000-0001-8049-7069")),
     person(given = "Brendan",
