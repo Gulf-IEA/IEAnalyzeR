@@ -1,4 +1,5 @@
 
+## MAKE FAKE DATA
 set.seed(42)
 
 #thousand pounds
@@ -38,43 +39,79 @@ annual_by_area <- data.frame(
   Arrakis = runif(25, min = 14, max = 16)
 )
 
+#two category data
+two_cat <- data.frame(
+  year = 2000:2024,
+  rev_narnia= runif(25, min = 10000, max = 30000),
+  count_narnia= runif(25, min = 5, max = 100),
+  rev_wakanda= runif(25, min = 10000, max = 30000),
+  count_wakanda= runif(25, min = 5, max = 100)
+)
 
-usethis::use_data(single_metric)
+
+#save fake date (unformatted)
+usethis::use_data(single_metric, overwrite = TRUE)
 usethis::use_data(multi_unit_monthly, overwrite = TRUE)
-usethis::use_data(annual_by_area)
+usethis::use_data(annual_by_area, overwrite = TRUE)
+usethis::use_data(two_cat, overwrite = TRUE)
 
 
-head(multi_unit_monthly)
+# head(multi_unit_monthly)
 
-#Define header components for the data rows (ignore year)
+# ADD HEADERS TO FAKE DATA
+
+#Single metric add headers
+indicator_names <- c("Red fish biomass")
+unit_names <- c("Thousand pounds")
+extent_names <- c("")
+
+  # call the function
+single_table <- convert_cleaned_data(single_metric, indicator_names, unit_names, extent_names)
+head(single_table)
+
+#Monthly (multi) metric add headers
 indicator_names <- rep("Environmental parameters", ncol(multi_unit_monthly)-1)
 unit_names <- c("Temperature (°F)", "Salinity (ppm)", "Temperature (°F)", "Salinity (ppm)")
 extent_names <- c("Area A", "Area B", "Area A", "Area B")
 
-# 3. Call the function
+  # call the function
 monthly_table <- convert_cleaned_data(multi_unit_monthly, indicator_names, unit_names, extent_names)
 head(monthly_table)
 
+#Multi metric add headers
+indicator_names <- rep("Population", ncol(annual_by_area)-1)
+unit_names <- rep("Millions", ncol(annual_by_area)-1)
+extent_names <- c("Narnia", "Westeros", "Wakanda", "Arrakis")
 
-# Create a temporary file path for the CSV output
-temp_path1 <- tempfile(pattern = "single_output", fileext = ".csv")
-temp_path2 <- tempfile(pattern = "multi_output", fileext = ".csv")
-temp_path3 <- tempfile(pattern = "monthly_output", fileext = ".csv")
+  # all the function
+multi_table <- convert_cleaned_data(annual_by_area, indicator_names, unit_names, extent_names)
+head(multi_table)
 
-#Save each table to its unique temporary file path
-write.csv(single_table, file = temp_path1, row.names = FALSE)
-write.csv(multi_table, file = temp_path2, row.names = FALSE)
-write.csv(monthly_table, file = temp_path3, row.names = FALSE)
+#Two category data add headers
+indicator_names <- rep("Count and Revenue", ncol(two_cat)-1)
+unit_names <- c("Revenue (USD)", "Count", "Revenue (USD)", "Count")
+extent_names <- c("Narnia", "Narnia", "Wakanda", "Wakanda")
 
-test = read.csv(temp_path3)
-str(test)
+# all the function
+twocat_table <- convert_cleaned_data(two_cat, indicator_names, unit_names, extent_names)
+head(twocat_table)
 
-final_single_data <- IEAnalyzeR::data_prep(temp_path1)
-str(final_single_data)
+# DATA_PREP FAKE DATA
 
-final_multi_data <- IEAnalyzeR::data_prep(temp_path2, subind = "extent")
-str(final_multi_data)
+single_data_formatted <- IEAnalyzeR::data_prep(single_table)
+str(single_data_formatted)
+
+multi_data_formatted <- IEAnalyzeR::data_prep(multi_table, subind = "extent")
+str(multi_data_formatted)
 
 # With monthly data, we need to specify the anomaly argument. Either monthly or standardized monthly.
-final_monthly_data <- IEAnalyzeR::data_prep(test, anomaly = "stdmonthly")
-str(final_monthly_data)
+monthly_data_formatted <- IEAnalyzeR::data_prep(monthly_table, anomaly = "stdmonthly")
+str(monthly_data_formatted)
+
+twocat_data_formatted <- IEAnalyzeR::data_prep(twocat_table)
+
+# SAVE PREPPED FAKE DATA IN PACKAGE
+usethis::use_data(single_data_formatted, overwrite = TRUE)
+usethis::use_data(multi_data_formatted, overwrite = TRUE)
+usethis::use_data(monthly_data_formatted, overwrite = TRUE)
+usethis::use_data(twocat_data_formatted, overwrite = TRUE)
