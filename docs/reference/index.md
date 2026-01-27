@@ -21,3 +21,5 @@
   formatted example data
 - [`single_metric`](single_metric.md) : Single metric example data
 - [`trends()`](trends.md) : List trend options
+- [`twocat_data_formatted`](twocat_data_formatted.md) : Count and
+  revenue data per region

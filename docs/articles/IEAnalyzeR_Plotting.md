@@ -221,14 +221,6 @@ the trend symbols are in the right spot for final figures.
 ``` r
 # Add trends & define figure width
 plot_fn_obj(single_data_formatted, trend = T, fig.width = 6)
-#> Warning in value[[3L]](cond): Error in prepare_image: Rterm.exe:
-#> UnableToOpenBlob
-#> `C:\Users\brittanytroast\Documents\GitHub\IEAnalyzeR\inst\images\trend_symb\circle_fill.png':
-#> No such file or directory @ error/blob.c/OpenBlob/2967
-#> Warning in value[[3L]](cond): Error in prepare_image: Rterm.exe:
-#> UnableToOpenBlob
-#> `C:\Users\brittanytroast\Documents\GitHub\IEAnalyzeR\inst\images\trend_symb\arrow_down.png':
-#> No such file or directory @ error/blob.c/OpenBlob/2967
 ```
 
 ![](IEAnalyzeR_Plotting_files/figure-html/unnamed-chunk-13-1.png)
