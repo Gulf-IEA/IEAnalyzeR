@@ -4,8 +4,7 @@
 
 - **Brittany Troast**. Author, maintainer.
 
-- **Carissa Gervasi**. Author, maintainer.
-  [](https://orcid.org/0000-0001-8049-7069)
+- **Carissa Gervasi**. Author. [](https://orcid.org/0000-0001-8049-7069)
 
 - **Brendan Turley**. Author.
 

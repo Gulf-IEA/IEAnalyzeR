@@ -1,6 +1,7 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
 <url><loc>/404.html</loc></url>
 <url><loc>/articles/How_to_use_IEAnalyzeR.html</loc></url>
+<url><loc>/articles/IEAnalyzeR_Plotting.html</loc></url>
 <url><loc>/articles/index.html</loc></url>
 <url><loc>/authors.html</loc></url>
 <url><loc>/index.html</loc></url>
@@ -11,8 +12,11 @@
 <url><loc>/reference/create_trend_table.html</loc></url>
 <url><loc>/reference/data_prep.html</loc></url>
 <url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/monthly_data_formatted.html</loc></url>
+<url><loc>/reference/multi_data_formatted.html</loc></url>
 <url><loc>/reference/multi_unit_monthly.html</loc></url>
 <url><loc>/reference/plot_fn_obj.html</loc></url>
+<url><loc>/reference/single_data_formatted.html</loc></url>
 <url><loc>/reference/single_metric.html</loc></url>
 <url><loc>/reference/trends.html</loc></url>
 </urlset>

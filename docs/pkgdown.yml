@@ -3,4 +3,5 @@ pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
   How_to_use_IEAnalyzeR: How_to_use_IEAnalyzeR.html
-last_built: 2026-01-08T15:24Z
+  IEAnalyzeR_Plotting: IEAnalyzeR_Plotting.html
+last_built: 2026-01-27T17:51Z

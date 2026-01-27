@@ -58,12 +58,12 @@ population in millions was recorded annually for four areas from 2000 to
 ``` r
 head(annual_by_area)
 #>   year   Narnia Westeros  Wakanda  Arrakis
-#> 1 2000 47.41532 39.51909 5.134971 15.50305
-#> 2 2001 48.81320 39.13298 5.128418 14.90546
-#> 3 2002 48.22356 39.69938 5.457828 15.07158
-#> 4 2003 47.75912 38.37895 6.001140 15.07475
-#> 5 2004 47.87154 38.54257 5.000358 14.00276
-#> 6 2005 47.07486 39.65632 5.312855 14.71133
+#> 1 2000 47.95694 38.27504 5.911761 14.60771
+#> 2 2001 47.53304 38.21399 5.855812 15.03110
+#> 3 2002 48.71302 38.18572 5.368780 14.95590
+#> 4 2003 47.45829 39.83290 6.379288 15.53770
+#> 5 2004 48.58389 38.55412 6.008324 14.32786
+#> 6 2005 48.29355 39.77159 5.968176 14.88355
 
 #Define header components for the data rows (ignore year)
 indicator_names <- rep("Population", ncol(annual_by_area)-1)
@@ -76,10 +76,10 @@ head(multi_table)
 #>   indicator       Population       Population       Population       Population
 #> 1      unit         Millions         Millions         Millions         Millions
 #> 2    extent           Narnia         Westeros          Wakanda          Arrakis
-#> 3      2000  47.415317945648 39.5190885351039 5.13497077452485 15.5030451253988
-#> 4      2001  48.813202815596 39.1329768481664 5.12841809738893 14.9054631451145
-#> 5      2002 48.2235572868958 39.6993794371374 5.45782755420078 15.0715799876489
-#> 6      2003 47.7591184810735 38.3789478708059 6.00113977200817 15.0747533906251
+#> 3      2000 47.9569377740845 38.2750355172902 5.91176089260262 14.6077055237256
+#> 4      2001 47.5330411568284 38.2139893737622 5.85581202909816 15.0311023639515
+#> 5      2002 48.7130214325152 38.1857187915593 5.36878002190497 14.9559015464038
+#> 6      2003 47.4582929555327 39.8328979103826  6.3792876296211  15.537704449147
 ```
 
 Example with monthly data and different units. In this example the
@@ -176,46 +176,46 @@ str(final_single_data)
 #>   ..$ mid_y     : num 62.9
 #>   ..$ min_y     : num 26.6
 #>   ..$ max_y     : num 99.1
-#>   ..$ df_nm     : chr "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\Rtmpu4sa4X\\single_output68c3983563.csv"
+#>   ..$ df_nm     : chr "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\RtmpWKRzpG\\single_output5bfc74e34b45.csv"
 
 final_multi_data <- IEAnalyzeR::data_prep(temp_path2, subind = "extent")
 str(final_multi_data)
 #> List of 4
 #>  $ data  :'data.frame':  100 obs. of  4 variables:
 #>   ..$ year : num [1:100] 2000 2000 2000 2000 2001 ...
-#>   ..$ value: num [1:100] 47.42 39.52 5.13 15.5 48.81 ...
+#>   ..$ value: num [1:100] 47.96 38.28 5.91 14.61 47.53 ...
 #>   ..$ subnm: chr [1:100] "Narnia" "Westeros" "Wakanda" "Arrakis" ...
 #>   ..$ id   : num [1:100] 1 2 3 4 1 2 3 4 1 2 ...
-#>  $ ribbon:'data.frame':  145 obs. of  7 variables:
-#>   ..$ year : num [1:145] 2000 2001 2002 2003 2004 ...
-#>   ..$ value: num [1:145] 47.4 48.8 48.2 47.8 47.9 ...
-#>   ..$ subnm: chr [1:145] "Narnia" "Narnia" "Narnia" "Narnia" ...
-#>   ..$ id   : num [1:145] 1 1 1 1 1 1 1 1 1 1 ...
-#>   ..$ min  : num [1:145] 47.4 48.1 48.1 47.8 47.9 ...
-#>   ..$ max  : num [1:145] 48.1 48.8 48.2 48.1 48.1 ...
-#>   ..$ mean : num [1:145] 48.1 48.1 48.1 48.1 48.1 ...
+#>  $ ribbon:'data.frame':  151 obs. of  7 variables:
+#>   ..$ year : num [1:151] 2000 2001 2002 2003 2004 ...
+#>   ..$ value: num [1:151] 48 47.5 48.7 47.5 48.6 ...
+#>   ..$ subnm: chr [1:151] "Narnia" "Narnia" "Narnia" "Narnia" ...
+#>   ..$ id   : num [1:151] 1 1 1 1 1 1 1 1 1 1 ...
+#>   ..$ min  : num [1:151] 48 47.5 48 47.5 48 ...
+#>   ..$ max  : num [1:151] 48 48 48.7 48 48.6 ...
+#>   ..$ mean : num [1:151] 48 48 48 48 48 ...
 #>  $ labs  : chr [1:3, 1:5] "indicator" "unit" "extent" "Population" ...
 #>  $ vals  :'data.frame':  4 obs. of  20 variables:
 #>   ..$ allminyear: num [1:4] 2000 2000 2000 2000
 #>   ..$ allmaxyear: num [1:4] 2024 2024 2024 2024
 #>   ..$ minyear   : num [1:4] 2000 2000 2000 2000
 #>   ..$ maxyear   : num [1:4] 2024 2024 2024 2024
-#>   ..$ mean      : num [1:4] 48.12 38.83 5.78 15.22
-#>   ..$ sd        : num [1:4] 0.596 0.542 0.469 0.479
+#>   ..$ mean      : num [1:4] 47.97 38.79 5.86 14.93
+#>   ..$ sd        : num [1:4] 0.539 0.662 0.391 0.445
 #>   ..$ mean_tr   : chr [1:4] "circle_fill" "circle_fill" "circle_fill" "circle_fill"
 #>   ..$ mean_img  : chr [1:4] "C:/Users/carissa.gervasi/AppData/Local/Programs/R/R-4.4.3/library/IEAnalyzeR/images/trend_symb/circle_fill.png" "C:/Users/carissa.gervasi/AppData/Local/Programs/R/R-4.4.3/library/IEAnalyzeR/images/trend_symb/circle_fill.png" "C:/Users/carissa.gervasi/AppData/Local/Programs/R/R-4.4.3/library/IEAnalyzeR/images/trend_symb/circle_fill.png" "C:/Users/carissa.gervasi/AppData/Local/Programs/R/R-4.4.3/library/IEAnalyzeR/images/trend_symb/circle_fill.png"
-#>   ..$ slope_tr  : chr [1:4] "arrow_up" "arrow_leftright" "arrow_leftright" "arrow_leftright"
-#>   ..$ slope_img : chr [1:4] "C:/Users/carissa.gervasi/AppData/Local/Programs/R/R-4.4.3/library/IEAnalyzeR/images/trend_symb/arrow_up.png" "C:/Users/carissa.gervasi/AppData/Local/Programs/R/R-4.4.3/library/IEAnalyzeR/images/trend_symb/arrow_leftright.png" "C:/Users/carissa.gervasi/AppData/Local/Programs/R/R-4.4.3/library/IEAnalyzeR/images/trend_symb/arrow_leftright.png" "C:/Users/carissa.gervasi/AppData/Local/Programs/R/R-4.4.3/library/IEAnalyzeR/images/trend_symb/arrow_leftright.png"
+#>   ..$ slope_tr  : chr [1:4] "arrow_up" "arrow_leftright" "arrow_up" "arrow_down"
+#>   ..$ slope_img : chr [1:4] "C:/Users/carissa.gervasi/AppData/Local/Programs/R/R-4.4.3/library/IEAnalyzeR/images/trend_symb/arrow_up.png" "C:/Users/carissa.gervasi/AppData/Local/Programs/R/R-4.4.3/library/IEAnalyzeR/images/trend_symb/arrow_leftright.png" "C:/Users/carissa.gervasi/AppData/Local/Programs/R/R-4.4.3/library/IEAnalyzeR/images/trend_symb/arrow_up.png" "C:/Users/carissa.gervasi/AppData/Local/Programs/R/R-4.4.3/library/IEAnalyzeR/images/trend_symb/arrow_down.png"
 #>   ..$ mean_sym  : chr [1:4] "●" "●" "●" "●"
-#>   ..$ slope_sym : chr [1:4] "↑" "→" "→" "→"
+#>   ..$ slope_sym : chr [1:4] "↑" "→" "↑" "↓"
 #>   ..$ mean_word : chr [1:4] "within" "within" "within" "within"
-#>   ..$ slope_word: chr [1:4] "an increasing" "a stable" "a stable" "a stable"
+#>   ..$ slope_word: chr [1:4] "an increasing" "a stable" "an increasing" "a decreasing"
 #>   ..$ subnm     : chr [1:4] "Narnia" "Westeros" "Wakanda" "Arrakis"
 #>   ..$ id        : num [1:4] 1 2 3 4
-#>   ..$ mid_y     : num [1:4] 48.02 38.85 5.72 14.96
-#>   ..$ min_y     : num [1:4] 47.1 38 5 14
-#>   ..$ max_y     : num [1:4] 48.97 39.7 6.44 15.93
-#>   ..$ df_nm     : chr [1:4] "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\Rtmpu4sa4X\\multi_output68c128b7ceb.csv" "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\Rtmpu4sa4X\\multi_output68c128b7ceb.csv" "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\Rtmpu4sa4X\\multi_output68c128b7ceb.csv" "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\Rtmpu4sa4X\\multi_output68c128b7ceb.csv"
+#>   ..$ mid_y     : num [1:4] 47.96 38.99 5.79 15.03
+#>   ..$ min_y     : num [1:4] 47.01 38 5.08 14.21
+#>   ..$ max_y     : num [1:4] 48.92 39.99 6.49 15.84
+#>   ..$ df_nm     : chr [1:4] "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\RtmpWKRzpG\\multi_output5bfc5a5b34d3.csv" "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\RtmpWKRzpG\\multi_output5bfc5a5b34d3.csv" "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\RtmpWKRzpG\\multi_output5bfc5a5b34d3.csv" "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\RtmpWKRzpG\\multi_output5bfc5a5b34d3.csv"
 
 # With monthly data, we need to specify the anomaly argument. Either monthly or standardized monthly.
 final_monthly_data <- IEAnalyzeR::data_prep(temp_path3, anomaly = "monthly", subind = "extent")
@@ -255,7 +255,7 @@ str(final_monthly_data)
 #>   ..$ mid_y     : num [1:4] -0.148 0.536 0.111 0.182
 #>   ..$ min_y     : num [1:4] -2.23 -4.76 -2.22 -5.73
 #>   ..$ max_y     : num [1:4] 1.94 5.83 2.44 6.1
-#>   ..$ df_nm     : chr [1:4] "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\Rtmpu4sa4X\\monthly_output68c6bf03964.csv_monthly_anom" "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\Rtmpu4sa4X\\monthly_output68c6bf03964.csv_monthly_anom" "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\Rtmpu4sa4X\\monthly_output68c6bf03964.csv_monthly_anom" "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\Rtmpu4sa4X\\monthly_output68c6bf03964.csv_monthly_anom"
+#>   ..$ df_nm     : chr [1:4] "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\RtmpWKRzpG\\monthly_output5bfc12f061ff.csv_monthly_anom" "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\RtmpWKRzpG\\monthly_output5bfc12f061ff.csv_monthly_anom" "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\RtmpWKRzpG\\monthly_output5bfc12f061ff.csv_monthly_anom" "C:\\Users\\CARISS~1.GER\\AppData\\Local\\Temp\\RtmpWKRzpG\\monthly_output5bfc12f061ff.csv_monthly_anom"
 ```
 
 ## Plotting the data
