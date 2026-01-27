@@ -23,7 +23,6 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(IEAnalyzeR)
-# remotes::install_git("https://github.com/Gulf-IEA/IEAnalyzeR", branch = "plotting_vignette")
 ```
 
 Here are the default figures plotted with the `plot_fn_obj` function on a variety of data with no customizations. They include a single indicator, a multi-indicator representing four regions, a multi-indicator using monthly data, and an indicator with two categories of indicators..
