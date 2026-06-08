@@ -10,7 +10,7 @@ Purpose: Place where code is setup to test new functions on all of our example d
 
 #Install branch IEAnalyzer
 ## Replace ref with test branch name
-devtools::install_github("Gulf-IEA/IEAnalyzeR", ref = "fix-partial_dates_data")
+devtools::install_github("Gulf-IEA/IEAnalyzeR", ref = "fix-partial_dates_data", force = T)
 
 library(IEAnalyzeR)
 ```
