@@ -104,7 +104,7 @@ data_prep<-function (df, trends = T, subind = FALSE, anomaly=NULL)
   ### end helper function
 
 
-  if (!all(grepl("^[0-9]{4}$", df_dat[, 1]) | is.na(df_dat[, 1]))) {
+  if (!all(grepl("^[0-9]{4}(\\.[0-9]+)?$", df_dat[, 1]) | is.na(df_dat[, 1]))) {
     df_dat[, 1] <- clean_dates_to_partial_year(df_dat[, 1])
   }
 
