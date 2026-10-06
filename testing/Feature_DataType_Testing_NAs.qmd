@@ -1,0 +1,110 @@
+---
+title: "Feature_DataType_Testing_NAs"
+format: html
+---
+
+Purpose: Place where code is setup to test new functions on all of our example data.
+
+
+```{r libraries}
+
+#Install branch IEAnalyzer
+## Replace ref with test branch name
+devtools::install_git("https://github.com/Gulf-IEA/IEAnalyzeR")
+
+library(IEAnalyzeR)
+```
+
+```{r load practice data}
+
+#Annual x 1 fish
+single_metric
+single_metric_na<-single_metric
+single_metric_na[c(2,7,8), 2]<-NA
+
+#Monthly (Year-Month ex:2000-01) x 2 units x 2 categories
+multi_unit_monthly
+multi_unit_monthly_na<-multi_unit_monthly
+multi_unit_monthly_na[c(2:4, 12, 15), 2]<-NA
+multi_unit_monthly_na[c(4:8, 12, 84:87), 3]<-NA
+multi_unit_monthly_na[c(72:78, 84, 100:103), 4]<-NA
+multi_unit_monthly_na[c(45:48, 75, 87, 89), 5]<-NA
+
+#Annual data x 4 locations
+annual_by_area
+annual_by_area_na<-annual_by_area
+annual_by_area_na[c(2:4, 12, 15), 2]<-NA
+annual_by_area_na[c(4:8, 12, 23), 3]<-NA
+annual_by_area_na[c(2:8, 18:22), 4]<-NA
+annual_by_area_na[c(7,12,23), 5]<-NA
+
+#Annual x 2 categories x 2 locations
+two_cat
+two_cat_na<-two_cat
+two_cat_na[c(2:4, 12, 15), 2]<-NA
+two_cat_na[c(4:8, 12, 23), 3]<-NA
+two_cat_na[c(2:8, 18:22), 4]<-NA
+two_cat_na[c(7,12,23), 5]<-NA
+```
+
+# Test convert_cleaned_data
+```{r}
+#Single metric add headers
+indicator_names <- c("Red fish biomass")
+unit_names <- c("Thousand pounds")
+extent_names <- c("")
+
+  # call the function
+single_table <- convert_cleaned_data(single_metric_na, indicator_names, unit_names, extent_names)
+
+#Monthly (multi) metric add headers
+indicator_names <- rep("Environmental parameters", ncol(multi_unit_monthly)-1)
+unit_names <- c("Temperature (°F)", "Salinity (ppm)", "Temperature (°F)", "Salinity (ppm)")
+extent_names <- c("Area A", "Area B", "Area A", "Area B")
+
+  # call the function
+monthly_table <- convert_cleaned_data(multi_unit_monthly_na, indicator_names, unit_names, extent_names)
+
+#Multi metric add headers
+indicator_names <- rep("Population", ncol(annual_by_area)-1)
+unit_names <- rep("Millions", ncol(annual_by_area)-1)
+extent_names <- c("Narnia", "Westeros", "Wakanda", "Arrakis")
+
+  # all the function
+multi_table <- convert_cleaned_data(annual_by_area_na, indicator_names, unit_names, extent_names)
+
+#Two category data add headers
+indicator_names <- rep("Count and Revenue", ncol(two_cat)-1)
+unit_names <- c("Revenue (USD)", "Count", "Revenue (USD)", "Count")
+extent_names <- c("Narnia", "Narnia", "Wakanda", "Wakanda")
+
+# all the function
+twocat_table <- convert_cleaned_data(two_cat_na, indicator_names, unit_names, extent_names)
+
+```
+
+
+# Test Data Prep
+```{r}
+sing_met_form<- data_prep(single_table)
+
+mult_mon_form<- data_prep(monthly_table)
+mult_mon_single<- data_prep(monthly_table[,1:2])
+
+ann_area_form<- data_prep(multi_table)
+
+two_cat_form<- data_prep(twocat_table)
+```
+
+
+# Test Data Plot
+```{r}
+plot_fn_obj(sing_met_form)
+
+plot_fn_obj(ann_area_form)
+
+plot_fn_obj(mult_mon_form)
+
+plot_fn_obj(two_cat_form)
+```
+
