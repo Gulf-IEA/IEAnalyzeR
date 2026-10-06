@@ -31,8 +31,13 @@ data_prep<-function (df, trends = T, subind = FALSE, anomaly=NULL, connect_gaps 
                       return(data.frame(x = r, y = mean))
                     else return(NULL)
                   }))
-    d2 <- cbind(rx, mean, mean)
-    names(d2) <- c("year", "value",'min', 'max')
+    if (is.null(rx)) {
+      d2 <- data.frame(year = NA_real_, value = NA_real_,
+                       min = NA_real_, max = NA_real_)
+    } else {
+      d2 <- cbind(rx, mean, mean)
+      names(d2) <- c("year", "value", "min", "max")
+    }
     return(d2)
   }
   ### end helper function
