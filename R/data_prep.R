@@ -8,12 +8,13 @@
 #' @param df Dataset with top 3 rows inlcuding metadata of indicator name, unit, and subcategory.
 #' @param trends T/F if you would like the function to calculate trends on this dataset.
 #' @param subind How is the data categorized for sub indicators. Options "extent" or "unit".
-#' @param anomaly Calculate and replace values with either "monthly" or "stdmonthly" values
+#' @param anomaly Calculate and replace values with either "monthly" or "stdmonthly" values.
+#' @param connect_gaps T/F Toggle if you want a line drawn through gaps in monthly or yearly timeseries.
 #'
 #' @return An object with datasets used in "plot_fn_obj".
 #' @export
 
-data_prep<-function (df, trends = T, subind = FALSE, anomaly=NULL)
+data_prep<-function (df, trends = T, subind = FALSE, anomaly=NULL, connect_gaps = FALSE)
 {
 
   # system.file("images", paste0(,".png") , package = "IEAnalyzeR")
@@ -345,6 +346,31 @@ data_prep<-function (df, trends = T, subind = FALSE, anomaly=NULL)
     df_list$vals <- vals
   }
 
+  if (connect_gaps == F) {
+    expand_series <- function(dat) {
+      dat %>%
+        group_by(across(any_of("id"))) %>%
+        group_modify(~ {
+          low_dat  <- min(.x$year)
+          high_dat <- max(.x$year)
+
+          if(all(.x$year %% 1 == 0)){
+            complete(.x, year = low_dat:high_dat)
+          } else {
+            all_dates <- rep(floor(low_dat):ceiling(high_dat), each = 12) + (0:11)/12
+            cut_dates <- all_dates[all_dates >= low_dat & all_dates <= high_dat]
+            complete(.x, year = cut_dates)
+          }
+
+        }) %>%
+        fill(any_of(c("subnm", "id")), .direction = "downup") %>%
+        ungroup() %>%
+        select(any_of(c("year", "value", "subnm", "id")))
+    }
+
+    df_list$data<-expand_series(df_list$data)
+
+  }
 
   df_list
 }
