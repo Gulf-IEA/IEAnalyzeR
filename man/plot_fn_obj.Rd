@@ -20,7 +20,8 @@ plot_fn_obj(
   fig.width = 6,
   facet_grid = F,
   xbreaks_by = NULL,
-  trend = F
+  trend = F,
+  ci = T
 )
 }
 \arguments{
@@ -55,6 +56,8 @@ plot_fn_obj(
 \item{xbreaks_by}{Specify the interval that the x axis breaks occur.}
 
 \item{trend}{Do you want to include trend symbols (mean & slope) on the side of the plots.}
+
+\item{ci}{T/F If you would like cocnfidence intervals to be displayed. CI data must have been included in the data_prep stage.}
 }
 \value{
 A plot in the indicatorTimeSeries format.

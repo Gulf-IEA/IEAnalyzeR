@@ -4,16 +4,27 @@
 \alias{data_prep}
 \title{Title}
 \usage{
-data_prep(df, trends = T, subind = FALSE, anomaly = NULL)
+data_prep(
+  df,
+  trends = T,
+  subind = FALSE,
+  anomaly = NULL,
+  connect_gaps = FALSE,
+  ci_df = NULL
+)
 }
 \arguments{
-\item{df}{Dataset with top 3 rows inlcuding metadata of indicator name, unit, and subcategory.}
+\item{df}{Dataset with top 3 rows including metadata of indicator name, unit, and subcategory.}
 
 \item{trends}{T/F if you would like the function to calculate trends on this dataset.}
 
 \item{subind}{How is the data categorized for sub indicators. Options "extent" or "unit".}
 
-\item{anomaly}{Calculate and replace values with either "monthly" or "stdmonthly" values}
+\item{anomaly}{Calculate and replace values with either "monthly" or "stdmonthly" values.}
+
+\item{connect_gaps}{T/F Toggle if you want a line drawn through gaps in monthly or yearly timeseries.}
+
+\item{ci_df}{A dataframe containing confidence interval values created using the [convert_ci_data()] function}
 }
 \value{
 An object with datasets used in "plot_fn_obj".

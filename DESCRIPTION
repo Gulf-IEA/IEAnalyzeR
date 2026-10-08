@@ -1,7 +1,7 @@
 Package: IEAnalyzeR
 Type: Package
 Title: Standardized Functions for the Gulf-IEA Ecosystem Status Reports 
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: 
   c(person(given = "Brittany",
            family = "Troast",
