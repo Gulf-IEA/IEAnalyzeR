@@ -5,16 +5,17 @@
 #' @import dplyr
 #' @import lubridate
 #'
-#' @param df Dataset with top 3 rows inlcuding metadata of indicator name, unit, and subcategory.
+#' @param df Dataset with top 3 rows including metadata of indicator name, unit, and subcategory.
 #' @param trends T/F if you would like the function to calculate trends on this dataset.
 #' @param subind How is the data categorized for sub indicators. Options "extent" or "unit".
 #' @param anomaly Calculate and replace values with either "monthly" or "stdmonthly" values.
 #' @param connect_gaps T/F Toggle if you want a line drawn through gaps in monthly or yearly timeseries.
+#' @param ci_df A dataframe containing confidence interval values created using the [convert_ci_data()] function
 #'
 #' @return An object with datasets used in "plot_fn_obj".
 #' @export
 
-data_prep<-function (df, trends = T, subind = FALSE, anomaly=NULL, connect_gaps = FALSE)
+data_prep<-function (df, trends = T, subind = FALSE, anomaly=NULL, connect_gaps = FALSE, ci_df=NULL)
 {
 
   # system.file("images", paste0(,".png") , package = "IEAnalyzeR")
@@ -179,6 +180,38 @@ data_prep<-function (df, trends = T, subind = FALSE, anomaly=NULL, connect_gaps 
   df_dat <- df_dat %>% arrange(year)
   df_list$data <- df_dat
 
+  #Format CI data
+  if (!is.null(ci_df)) {
+    ci_list<-list()
+    for (nm in names(ci_df)) {
+      ci_cut<-ci_df[[nm]]
+
+      if (ncol(ci_cut)<3) {
+        colnames(ci_cut)<-c("year",nm)
+        ci_cut[[nm]]<- as.numeric(ci_cut[[nm]])
+        ci_cut$year <- as.numeric(ci_cut$year)
+        ci_cut<-ci_cut[!is.na(ci_cut[[nm]]),]
+      } else {
+        sub_list<-list()
+        for (i in 2:ncol(ci_cut)){
+          sub_df<-ci_cut[,c(1,i)]
+          #df_lab<-rbind(colnames(df),df[1:2,]) #deleted for flexibility in where the data start
+          ind<-ifelse(subind=="extent", df_lab[3,i], ifelse(subind=="unit", df_lab[2,i], df_lab[1,i]))
+          colnames(sub_df)<-c("year",nm)
+          sub_df<-as.data.frame(lapply(sub_df, as.numeric))
+          sub_df$year <- as.numeric(sub_df$year)
+          sub_df$subnm<-paste0(ind)
+          sub_df$id<- i-1
+          sub_df<-sub_df[!is.na(sub_df[[nm]]),]
+          sub_list[[i]]<-sub_df
+        }
+        ci_cut<-do.call("rbind",sub_list)
+      }
+      ci_list[[nm]]<-ci_cut
+    }
+    ci_comb<-reduce(ci_list, left_join)
+    df_list$ci<-ci_comb
+  }
 
   ### create dataframes for ribbon plotting
   # inputs: dataframe with year and value

@@ -94,6 +94,11 @@ mult_mon_single<- data_prep(monthly_table[,1:2])
 ann_area_form<- data_prep(multi_table)
 
 two_cat_form<- data_prep(twocat_table)
+
+sing_met_form$data
+mult_mon_form$data
+ann_area_form$data
+two_cat_form$data
 ```
 
 

@@ -24,6 +24,7 @@
 #' @param facet_grid Used if you need a subset of plots organized by two categories of labels. T defaults to unit by extent, or can specify two out of the three ("indicator","unit","extent")
 #' @param xbreaks_by Specify the interval that the x axis breaks occur.
 #' @param trend Do you want to include trend symbols (mean & slope) on the side of the plots.
+#' @param ci T/F If you would like cocnfidence intervals to be displayed. CI data must have been included in the data_prep stage.
 #'
 #' @return A plot in the indicatorTimeSeries format.
 #' @export
@@ -33,7 +34,7 @@ plot_fn_obj<-function (df_obj, interactive = FALSE, sep_ylabs = F, ylab_sublabel
                           manual_ylab = NULL, manual_xlab = NULL, manual_title = NULL,
                           lwd=0.75, pts=F, pt_size=0.75, fig.width=6,
                           facet_grid=F,  xbreaks_by= NULL,
-                          trend=F)
+                          trend=F, ci=T)
 
 {
 
@@ -63,6 +64,14 @@ plot_fn_obj<-function (df_obj, interactive = FALSE, sep_ylabs = F, ylab_sublabel
     plot <- plot +
       geom_rect(data = df_obj$vals, aes(xmin=maxyear-5, xmax=maxyear, ymin=mean-sd, ymax=mean+sd),
                 inherit.aes = F, fill="#DFDFFF")}
+
+  if (ci == T & !is.null(df_obj$ci)) {
+    df_obj$ci<-suppressMessages(left_join(df_obj$ci, id_info))
+
+    plot <- plot +
+      geom_ribbon(data = df_obj$ci, aes(x=year, ymin=lower, ymax=upper, y=NULL), alpha=0.25)
+  }
+
   plot<- plot+
     geom_hline(aes(yintercept = mean), lty = "dashed", data = df_obj$vals) +
     geom_hline(aes(yintercept = mean + sd), data = df_obj$vals) +
