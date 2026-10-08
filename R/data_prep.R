@@ -198,7 +198,7 @@ data_prep<-function (df, trends = T, subind = FALSE, anomaly=NULL, connect_gaps 
           #df_lab<-rbind(colnames(df),df[1:2,]) #deleted for flexibility in where the data start
           ind<-ifelse(subind=="extent", df_lab[3,i], ifelse(subind=="unit", df_lab[2,i], df_lab[1,i]))
           colnames(sub_df)<-c("year",nm)
-          sub_df<-as.data.frame(lapply(sub_df, as.numeric))
+          sub_df<-suppressWarnings(as.data.frame(lapply(sub_df, as.numeric)))
           sub_df$year <- as.numeric(sub_df$year)
           sub_df$subnm<-paste0(ind)
           sub_df$id<- i-1
@@ -209,7 +209,7 @@ data_prep<-function (df, trends = T, subind = FALSE, anomaly=NULL, connect_gaps 
       }
       ci_list[[nm]]<-ci_cut
     }
-    ci_comb<-left_join(ci_list[1], ci_list[2])
+    ci_comb<-left_join(ci_list[[1]], ci_list[[2]])
     df_list$ci<-ci_comb
   }
 
