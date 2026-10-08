@@ -209,7 +209,7 @@ data_prep<-function (df, trends = T, subind = FALSE, anomaly=NULL, connect_gaps 
       }
       ci_list[[nm]]<-ci_cut
     }
-    ci_comb<-reduce(ci_list, left_join)
+    ci_comb<-left_join(ci_list[1], ci_list[2])
     df_list$ci<-ci_comb
   }
 
