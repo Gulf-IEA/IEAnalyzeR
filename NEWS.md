@@ -1,3 +1,6 @@
+# IEAnalyzer 0.1.2
+- Added arguments for changing plot title (`title_sz`), axis title (`axistitle_sz`), and axis text (`axistext_sz`) size. 
+
 # IEAnalyzeR 0.1.1
 
 -   Added changes to plotting function to incorporate confidence interval and connect_gap functionality
