@@ -25,6 +25,9 @@
 #' @param xbreaks_by Specify the interval that the x axis breaks occur.
 #' @param trend Do you want to include trend symbols (mean & slope) on the side of the plots.
 #' @param ci T/F If you would like cocnfidence intervals to be displayed. CI data must have been included in the data_prep stage.
+#' @param title_sz The font size of the plot title.
+#' @param axistitle_sz The font size of the axis titles.
+#' @param axistext_sz The font size of the axis tick text.
 #'
 #' @return A plot in the indicatorTimeSeries format.
 #' @export
@@ -32,8 +35,9 @@
 plot_fn_obj<-function (df_obj, interactive = FALSE, sep_ylabs = F, ylab_sublabel = NULL,
                           facet_scales = "free", ncol = NULL,
                           manual_ylab = NULL, manual_xlab = NULL, manual_title = NULL,
-                          lwd=0.75, pts=F, pt_size=0.75, fig.width=6,
-                          facet_grid=F,  xbreaks_by= NULL,
+                          lwd=0.75, pts=F, pt_size=0.75,
+                          title_sz= 13, axistitle_sz= 12, axistext_sz= 10,
+                          fig.width=6, facet_grid=F,  xbreaks_by= NULL,
                           trend=F, ci=T)
 
 {
@@ -79,8 +83,12 @@ plot_fn_obj<-function (df_obj, interactive = FALSE, sep_ylabs = F, ylab_sublabel
     geom_line(aes(group = 1), lwd = lwd) + xlab("Year") +
     ylab(df_obj$labs[2, 2]) + ggtitle(df_obj$labs[1, 2]) +
     theme_bw() + theme(strip.background = element_blank(),
-                       strip.text = element_text(face = "bold"), title = element_text(size = 14,
-                                                                                      face = "bold"), panel.grid = element_blank(), plot.title = element_text(hjust = 0.5))
+                       strip.text = element_text(face = "bold"),
+                       title = element_text(size = title_sz,face = "bold"),
+                       axis.title = element_text(size=axistitle_sz),
+                       axis.text = element_text(size=axistext_sz),
+                       panel.grid = element_blank(),
+                       plot.title = element_text(hjust = 0.5))
 
   if (pts==T) {
     plot <- plot+
