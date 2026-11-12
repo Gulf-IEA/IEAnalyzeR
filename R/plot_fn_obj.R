@@ -28,6 +28,7 @@
 #' @param title_sz The font size of the plot title.
 #' @param axistitle_sz The font size of the axis titles.
 #' @param axistext_sz The font size of the axis tick text.
+#' @param symbol_size Controls the size of the trend symbols. Default is 0.15.
 #'
 #' @return A plot in the indicatorTimeSeries format.
 #' @export
@@ -38,7 +39,7 @@ plot_fn_obj<-function (df_obj, interactive = FALSE, sep_ylabs = F, ylab_sublabel
                           lwd=0.75, pts=F, pt_size=0.75,
                           title_sz= 13, axistitle_sz= 12, axistext_sz= 10,
                           fig.width=6, facet_grid=F,  xbreaks_by= NULL,
-                          trend=F, ci=T)
+                          trend=F, symbol_size=0.15, ci=T)
 
 {
 
@@ -222,8 +223,8 @@ plot_fn_obj<-function (df_obj, interactive = FALSE, sep_ylabs = F, ylab_sublabel
 
 
     plot<- plot+
-      ggimage::geom_image(data=ypos_df,aes(image=mean_img, y=ypos_mn), x=trend_pos, size=0.15, na.rm = T)+
-      ggimage::geom_image(data=ypos_df,aes(image=slope_img, y=ypos_sl), x=trend_pos, size=0.15, na.rm = T)+
+      ggimage::geom_image(data=ypos_df,aes(image=mean_img, y=ypos_mn), x=trend_pos, size=symbol_size, na.rm = T)+
+      ggimage::geom_image(data=ypos_df,aes(image=slope_img, y=ypos_sl), x=trend_pos, size=symbol_size, na.rm = T)+
       coord_cartesian(clip = "off", expand = T)+
       theme(plot.margin = margin(3,(0.09 * fig.width * 72),3,3,unit = "pt"),
             panel.spacing.x = unit(0.09 * fig.width * 72, "pt"))
