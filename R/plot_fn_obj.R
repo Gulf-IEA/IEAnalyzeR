@@ -84,7 +84,7 @@ plot_fn_obj<-function (df_obj, interactive = FALSE, sep_ylabs = F, ylab_sublabel
     geom_line(aes(group = 1), lwd = lwd) + xlab("Year") +
     ylab(df_obj$labs[2, 2]) + ggtitle(df_obj$labs[1, 2]) +
     theme_bw() + theme(strip.background = element_blank(),
-                       strip.text = element_text(face = "bold"),
+                       strip.text = element_text(face = "bold", size=axistitle_sz),
                        title = element_text(size = title_sz,face = "bold"),
                        axis.title = element_text(size=axistitle_sz),
                        axis.text = element_text(size=axistext_sz),
@@ -157,8 +157,12 @@ plot_fn_obj<-function (df_obj, interactive = FALSE, sep_ylabs = F, ylab_sublabel
       plot <- plot + facet_wrap(~id, ncol = ncol,
                                 scales = facet_scales, strip.position = "left", labeller = as_labeller(setNames(ylabs,
                                                                                                                 df_obj$vals$id))) +
-        theme(strip.placement = "outside", strip.background = element_blank(),
-              strip.text = element_text(face = "bold"), axis.title.y = element_blank())
+        theme(strip.placement = "outside",
+              strip.background = element_blank(),
+              strip.text = element_text(face = "bold", size = axistext_sz),
+              axis.title.y = element_blank(),
+              axis.title.x = element_text(size = axistitle_sz),
+              axis.text = element_text(size = axistext_sz))
       if (!is.null(manual_ylab)) {
         plot <- plot + facet_wrap(~id, ncol = ncol, scales = facet_scales, strip.position = "left",
                                   labeller = as_labeller(setNames(manual_ylab,
@@ -173,7 +177,8 @@ plot_fn_obj<-function (df_obj, interactive = FALSE, sep_ylabs = F, ylab_sublabel
       plot <- plot + facet_grid(as.formula(paste(grid_by[1], "~", grid_by[2])),
                                 switch="y", scales=facet_scales)+
         theme(strip.placement = "outside", strip.background = element_blank(),
-              strip.text = element_text(face = "bold"))
+              strip.text = element_text(face = "bold", size = axistext_sz),
+              axis.title = element_text(size = axistitle_sz))
     } else {
       if(exists("ylabs")) {
         big_y<-ylabs
@@ -181,8 +186,8 @@ plot_fn_obj<-function (df_obj, interactive = FALSE, sep_ylabs = F, ylab_sublabel
       if(exists("ylabs")==F) {
         ylabs<-df_obj$vals$subnm
       }
-      plot <- plot + facet_wrap(~id, ncol = ncol, scales = facet_scales, labeller = as_labeller(setNames(ylabs,
-                                                                                                         df_obj$vals$id)))
+      plot <- plot + facet_wrap(~id, ncol = ncol, scales = facet_scales,
+                                labeller = as_labeller(setNames(ylabs,df_obj$vals$id)))
 
       if (!is.null(ylab_sublabel)) {
         plot<-plot+

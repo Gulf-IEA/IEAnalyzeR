@@ -104,6 +104,9 @@ two_cat_form$data
 
 # Test Data Plot
 ```{r}
+library(ggplot2)
+library(dplyr)
+
 plot_fn_obj(sing_met_form)
 
 plot_fn_obj(ann_area_form)
@@ -111,5 +114,6 @@ plot_fn_obj(ann_area_form)
 plot_fn_obj(mult_mon_form)
 
 plot_fn_obj(two_cat_form)
+
 ```
 
