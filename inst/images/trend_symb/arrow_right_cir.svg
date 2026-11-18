@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 150 150">
+<defs><mask id="m"><rect width="150" height="150" fill="white"/>
+<g stroke="black" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M28,75 L122,75 M82,35 L122,75 L82,115"/></g></mask></defs>
+<circle cx="75" cy="75" r="75" fill="black" mask="url(#m)"/></svg>
